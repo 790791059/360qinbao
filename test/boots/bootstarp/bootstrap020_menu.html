@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <!--  bootstrap需要引入三个文件夹：1.css  2.fonts  3.js
+          bootstrap中的特效需要jquery支持,所以需要额外引入jquery.js
+          按照官方说明，JS 放置在body后面可以使页面加载速度更快
+          引入两个css 1.bootstrap.min.css
+                      2.bootstrap-theme.min.css
+          引入两个js  1.jquery-3.3.1.min.js
+                      2.bootstrap.min.js
+     -->
+</head>
+<body>
+    <h4 class="text-danger">导航菜单</h4>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">超级码农系统</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">个人资料</a></li>
+                    <li><a href="#">码农中心</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            码农等级
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">码农阵亡名单</a></li>
+                            <li><a href="#">码农装备</a></li>
+                            <li><a href="#">码农技能</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">暴击大法</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">闪避大法</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        // 替换bootstrap样式单
+        //$("#mytr").attr({"class": "warning"});
+    });
+</script>
+</html>
