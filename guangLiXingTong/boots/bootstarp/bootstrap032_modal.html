@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <!--  bootstrap需要引入三个文件夹：1.css  2.fonts  3.js
+          bootstrap中的特效需要jquery支持,所以需要额外引入jquery.js
+          按照官方说明，JS 放置在body后面可以使页面加载速度更快
+          引入两个css 1.bootstrap.min.css
+                      2.bootstrap-theme.min.css
+          引入两个js  1.jquery-3.3.1.min.js
+                      2.bootstrap.min.js
+     -->
+</head>
+<body>
+    <h4 class="text-danger">page demo</h4>
+    <br/>
+<!--------------------------------------------------------------------------------------------------------------------->
+    <h2>创建模态框（Modal）</h2>
+    <!-- 按钮触发模态框 -->
+    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        点击弹出模态框
+    </button>
+
+    <!--
+        在模态框中需要注意两点：
+        1.class为modal，用来把 <div> 的内容识别为模态框。
+        2.class为fade，当模态框被切换时，它会引起内容淡入淡出。
+        aria-labelledby="myModalLabel"，该属性引用模态框的标题。
+        属性 aria-hidden="true" 用于保持模态窗口不可见，直到触发器被触发为止（比如点击在相关的按钮上）。
+        <div class="modal-header">，modal-header 是为模态窗口的头部定义样式的类。
+        class="close"，close 是一个 CSS class，用于为模态窗口的关闭按钮设置样式。
+        data-dismiss="modal"，是一个自定义的 HTML5 data 属性。在这里它被用于关闭模态窗口。
+        class="modal-body"，是 Bootstrap CSS 的一个 CSS class，用于为模态窗口的主体设置样式。
+        class="modal-footer"，是 Bootstrap CSS 的一个 CSS class，用于为模态窗口的底部设置样式。
+        data-toggle="modal"，HTML5 自定义的 data 属性 data-toggle 用于打开模态窗口。
+    -->
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <!--  modal-lg和modal-sm控制大小  不使用这两个属性是默认大小  如果觉得默认的三种设置不够，可以自己书写style width-->
+        <div class="modal-dialog" style="width: 400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        登录
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!--  控制div的大小，核心控制 col-sm控制占几列，col-sm-offset控制从左开始，偏移几列 -->
+                    <div class="input-group col-sm-10 col-sm-offset-1">
+                        <span class="input-group-addon">账户:</span>
+                        <input type="text" class="form-control" id="myuser" placeholder="请输入账户名">
+                    </div>
+                    <br>
+                    <div class="input-group col-sm-10 col-sm-offset-1">
+                        <span class="input-group-addon">密码:</span>
+                        <input type="text" class="form-control" placeholder="请输入密码">
+                    </div>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button id="mybutton" type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('#myModal').on('hide.bs.modal', function () {
+            alert('关闭对话框的时候，我都知道，所以不要乱用data-dismiss="modal"属性');
+        });
+        $('#mybutton').click(function () {
+            alert('你确定要更改？ 用户名=' + $('#myuser').val());
+            $('#mybutton').attr("data-dismiss","modal");   // 关闭整个对话框
+        });
+    });
+</script>
+</html>

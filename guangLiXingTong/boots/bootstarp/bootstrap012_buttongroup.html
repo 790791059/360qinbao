@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <!--  bootstrap需要引入三个文件夹：1.css  2.fonts  3.js
+          bootstrap中的特效需要jquery支持,所以需要额外引入jquery.js
+          按照官方说明，JS 放置在body后面可以使页面加载速度更快
+          引入两个css 1.bootstrap.min.css
+                      2.bootstrap-theme.min.css
+          引入两个js  1.jquery-3.3.1.min.js
+                      2.bootstrap.min.js
+     -->
+</head>
+<body>
+    <h3 class="text-danger">各种按钮组</h3>
+    <div class="container">
+        <p class="text-danger">btn-group 类用于创建按钮组</p>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">首页</button>
+            <button type="button" class="btn btn-primary">个人资料</button>
+            <button type="button" class="btn btn-primary">修改密码</button>
+            <button type="button" class="btn btn-primary">退出</button>
+        </div>
+    </div>
+    <hr/>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+    <div class="container">
+        <p class="text-danger">btn-group-* 类来控制按钮组中使用按钮的大小</p>
+        <h3>大按钮:</h3>
+        <div class="btn-group btn-group-lg">
+            <button type="button" class="btn btn-primary">首页</button>
+            <button type="button" class="btn btn-primary">个人资料</button>
+            <button type="button" class="btn btn-primary">修改密码</button>
+            <button type="button" class="btn btn-primary">退出</button>
+        </div>
+        <h3>默认大小按钮:</h3>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">首页</button>
+            <button type="button" class="btn btn-primary">个人资料</button>
+            <button type="button" class="btn btn-primary">修改密码</button>
+            <button type="button" class="btn btn-primary">退出</button>
+        </div>
+        <h3>小按钮:</h3>
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-primary">首页</button>
+            <button type="button" class="btn btn-primary">个人资料</button>
+            <button type="button" class="btn btn-primary">修改密码</button>
+            <button type="button" class="btn btn-primary">退出</button>
+        </div>
+        <h3>超级小按钮:</h3>
+        <div class="btn-group btn-group-xs">
+            <button type="button" class="btn btn-primary">首页</button>
+            <button type="button" class="btn btn-primary">个人资料</button>
+            <button type="button" class="btn btn-primary">修改密码</button>
+            <button type="button" class="btn btn-primary">退出</button>
+        </div>
+    </div>
+    <hr/>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+    <div class="container">
+        <p class="text-danger">btn-group-vertical 类来设置垂直效果</p>
+        <div class="btn-group-vertical">
+            <button type="button" class="btn btn-primary">首页</button>
+            <button type="button" class="btn btn-primary">个人资料</button>
+            <button type="button" class="btn btn-primary">修改密码</button>
+            <button type="button" class="btn btn-primary">退出</button>
+        </div>
+    </div>
+    <hr/>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+    <div class="container">
+        <p class="text-danger">btn-group-justified 类设置自适应大小的按钮组</p>
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-primary">首页</a>
+            <a href="#" class="btn btn-primary">个人资料</a>
+            <a href="#" class="btn btn-primary">修改密码</a>
+            <a href="#" class="btn btn-primary">退出</a>
+        </div>
+    </div>
+    <hr/>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+    <div class="container">
+        <p class="text-danger">内嵌按钮组创建下拉菜单：</p>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">首页</button>
+            <button type="button" class="btn btn-primary">个人资料</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    修改密码<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">修改自己密码</a></li>
+                    <li><a href="#">修改别人密码</a></li>
+                    <li><a href="#">修改不了密码</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr/>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+    <div class="container">
+        <p class="text-danger">分隔按钮</p>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">修改密码</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">修改自己密码</a></li>
+                <li><a href="#">修改别人密码</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr/><hr/><hr/><hr/><hr/>
+
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        // 替换bootstrap样式单
+        //$("#mytr").attr({"class": "warning"});
+    });
+</script>
+</html>

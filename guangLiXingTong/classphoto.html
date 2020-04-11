@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui-v2.5.6/layui/css/layui.css" media="all">
+    <style>
+        .layui-container{
+            margin-left: -15px;
+            overflow: hidden;
+        }
+        .layui-container>ul>li{
+            list-style-type: none;
+            float: left;
+            margin-left: 20px;
+        }
+        .layui-container>ul>li>img{
+            width: 215px;
+            height: 180px;
+        }
+        .layui-container>ul>li>div{
+            text-align: center;
+        }
+        .layui-container>ul>li>div>span{
+            float: right;
+            font-size: 25px;
+            margin-right: 10px;
+        }
+        .layui-container>ul>li>div{
+            height: 30px;
+            line-height: 30px;
+            background-color: rgb(244,245,249);
+        }
+        .Gn{
+            margin-top: 50px;
+        }
+        .Gn>div{
+            float: right;
+            margin-right: 200px;
+        }
+
+        #add{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+        #addLi{
+            margin-top: 20px;
+        }
+        #add{
+            position: absolute;
+            left: 20px;
+            top: 200px;
+            background-color: white;
+            display: none;
+        }
+        #add>input:nth-of-type(1){
+            margin: 20px;
+            width: 250px;
+        }
+        #add>h2{
+            margin: 20px;
+        }
+        #add>input:nth-of-type(2){
+            margin-left: 20px;
+        }
+        #add>button{
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+        #addLi{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<blockquote class="layui-elem-quote">
+    <h1>活动相册</h1>
+</blockquote>
+<div class="layui-container">
+<ul id="mainUl">
+
+    <li id="addLi">
+    <img src="" id="preview_img" alt="">
+    <div><label></label><span class="layui-icon">&#xe640;</span></div>
+    </li>
+</ul>
+</div>
+<div class="layui-container Gn">
+    <div>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe603;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe602;</i>
+    </button>
+    <button type="button" class="layui-btn" onclick="addPhoto()">添加</button>
+    <button type="button" class="layui-btn layui-btn-danger">批量删除</button>
+    </div>
+</div>
+<div id="add">
+    <h2>添加</h2>
+    <hr>
+    <input type="text" placeholder="输入类型" class="layui-input" id="text">
+    <input type="file"  id="myFile1"/>
+    <button type="button" class="layui-btn" id="open">确定</button>
+    <button type="button" class="layui-btn layui-btn-danger" id="shut">关闭</button>
+</div>
+<script src="layui-v2.5.6/layui/layui.js"></script>
+<script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
+<script>
+    var phototArr=[{"name":"节日1","link":"img/2.jpg"},{"name":"节日2","link":"img/3.jpg"},{"name":"节日3","link":"img/4.jpg"},
+                    {"name":"节日4","link":"img/5.jpg"}];
+    //加载
+    $(document).ready(function(){
+        for(var i=0;i<phototArr.length;i++){
+            $("#mainUl").prepend("<li><img src="+phototArr[i].link+">" +
+                "<div>"+phototArr[i].name+"<span class=layui-icon>&#xe640;</span></div></li>");
+        }
+    });
+    //添加
+    function addPhoto() {
+        $("#add").show()
+    }
+    $("#myFile1").change(function () {
+        //创建blob对象，浏览器将文件放入内存中，并生成标识
+        var img_src = URL.createObjectURL($(this)[0].files[0]);
+        //给img标检的src赋值
+        document.getElementById("preview_img").src=img_src;
+        //URL.revokeObjectURL(img_src);// 手动 回收，
+    });//添加照片
+    $("#shut").click(function () {
+        $("#add").hide()
+    });//取消
+    $("#open").click(function () {
+        $("#add").hide();
+        $("#addLi").show();
+        $("#addLi>div>label").text($("input#text").val())
+    });//确定
+</script>
+</body>
+</html>

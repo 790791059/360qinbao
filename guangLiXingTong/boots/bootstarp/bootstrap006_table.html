@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <!--  bootstrap需要引入三个文件夹：1.css  2.fonts  3.js
+          bootstrap中的特效需要jquery支持,所以需要额外引入jquery.js
+          按照官方说明，JS 放置在body后面可以使页面加载速度更快
+          引入两个css 1.bootstrap.min.css
+                      2.bootstrap-theme.min.css
+          引入两个js  1.jquery-3.3.1.min.js
+                      2.bootstrap.min.js
+     -->
+</head>
+<body>
+    <div class="container">
+        <h4> table 水平分割线、table-striped 斑马纹、table-bordered 边框、table-hover鼠标悬停特效</h4>
+        <h4> table-condensed收缩表格空间</h4>
+        <h4> active深色背景、success绿色背景、info蓝色背景、warning黄色背景、danger红色背景</h4>
+        <h3 class="text-danger">最后代码有jquery替换bootstrap的样式单</h3>
+        <table id="mytable" class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>名字</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="active">
+                <td>1</td>
+                <td>张三</td>
+            </tr>
+            <tr class="success">
+                <td>2</td>
+                <td>李四</td>
+            </tr>
+            <tr class="info">
+                <td>3</td>
+                <td>王五</td>
+            </tr>
+            <tr class="warning">
+                <td>4</td>
+                <td>刘六</td>
+            </tr>
+            <tr id="mytr" class="danger">
+                <td>5</td>
+                <td>陈七</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<button id="mybutton">替换样式</button>
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        // 控制bootstrap样式单
+        $("#mybutton").click(function () {
+            // $("#mytable").attr({"class": "table-hover"});     // 没有class或者存在相同class的时候，执行新增或者替换
+            // $("#mytable").addClass("table-hover");            // 新增或者追加class
+            // $("#mytable").removeClass("table-hover");         // 删除class
+        });
+    });
+</script>
+</html>

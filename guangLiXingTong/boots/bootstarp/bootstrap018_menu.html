@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <!--  bootstrap需要引入三个文件夹：1.css  2.fonts  3.js
+          bootstrap中的特效需要jquery支持,所以需要额外引入jquery.js
+          按照官方说明，JS 放置在body后面可以使页面加载速度更快
+          引入两个css 1.bootstrap.min.css
+                      2.bootstrap-theme.min.css
+          引入两个js  1.jquery-3.3.1.min.js
+                      2.bootstrap.min.js
+     -->
+</head>
+<body>
+    <h4 class="text-danger">顶部菜单</h4>
+
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">超级码农系统</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">超级码农系统</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                    <li><a href="#shop"><span class="glyphicon glyphicon-shopping-cart"></span> 码农列表</a></li>
+                    <li><a href="#support"><span class="glyphicon glyphicon-headphones"></span> 码农报价</a></li>
+                </ul>
+            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </div>
+
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        // 替换bootstrap样式单
+        //$("#mytr").attr({"class": "warning"});
+    });
+</script>
+</html>

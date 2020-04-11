@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>carousel模块快速使用</title>
+    <link rel="stylesheet" href="layui-v2.5.6/layui/css/layui.css" media="all">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        blockquote{
+            height: 65px;
+        }
+        #Pagechange{
+            margin-left: calc(50% - 40px);
+        }
+    </style>
+</head>
+<body>
+<blockquote class="layui-elem-quote" style="font-size: 14px;">
+<form class="layui-form">
+    <div class="layui-form-item">
+        <input type="text"  placeholder="请输入活动" class="layui-input layui-input-inline">
+        <input type="text"  placeholder="请输入相册名称" class="layui-input layui-input-inline">
+        <div class="form-group">
+            <button type="button" class="layui-btn layui-btn-normal">查找</button>
+            <button type="button" class="layui-btn ">添加</button>
+            <button type="button" class="layui-btn layui-btn-danger">批量删除</button>
+        </div>
+    </div>
+</form>
+
+</blockquote>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>活动</th>
+        <th>创建时间</th>
+        <th>相册名称</th>
+        <th>修改时间时间</th>
+        <th>管理操作</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>活动相册</td>
+        <td>2016-11-29</td>
+        <td>活动相册</td>
+        <td>2020-4-10</td>
+        <td><a href="classphoto.html" class="lookphoto"><i class="layui-icon" >&#xe64a;&nbsp;&nbsp;&nbsp;查看活动相册</i></a></td>
+        <td><a class="layui-btn layui-btn-xs ">添加</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs">修改</a>
+        </td>
+    </tr>
+    <tr>
+        <td>班级相册</td>
+        <td>2016-11-29</td>
+        <td>所有班级</td>
+        <td>2020-4-10</td>
+        <td><a href=""><i class="layui-icon">&#xe64a;&nbsp;&nbsp;&nbsp;查看班级相册</i></a></td>
+        <td><a class="layui-btn layui-btn-xs ">添加</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs">修改</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="layui-btn-group" id="Pagechange">
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe603;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe602;</i>
+    </button>
+</div>
+<!-- 条目中可以是任意内容，如：<img src=""> -->
+<script src="layui-v2.5.6/layui/layui.js"></script>
+<script>
+    $(".lookphoto").click(function (e) {
+        e.preventDefault();
+        $("#mainFrame").load($(this).attr("href"))
+    })
+</script>
+</body>
+</html>
