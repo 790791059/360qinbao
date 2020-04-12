@@ -32,10 +32,10 @@
     #pageStyle:hover{
     background-color:#CCC;
     }
-    /*#pageStyle .active{*/
-    /*background-color:#0CF;*/
-    /*color:#ffffff;*/
-    /*}*/
+    #pageStyle .active{
+    background-color:#0CF;
+    color:#ffffff;
+    }
     #neirong{
         position: relative;
 
@@ -72,8 +72,10 @@
         border-radius: 5px;
         border: none;
     }
-    button{
+    .green{
         background-color: #009688;
+    }
+    button{
         color: white;
         width: 50px;
         height: 30px;
@@ -125,20 +127,51 @@
         height: 50px;
         line-height: 50px;
     }
+    #tiShikuang{
+        background-color: white;
+        color: red;
+        text-align: center;
+        width: 350px;
+        height: 150px;
+        margin: 0 auto;
+      border-radius:10px;
+        position: fixed;
+        top:100px;
+        left: 500px;
+        z-index: 1;
+    }
+    .guanBi{
+        text-align: right;
+        padding-right: 10px;
+        width: auto;
+        height: 40px;
+        line-height: 40px;
+        background-color: #FFB800;
+        font-size: 20px;
+        color: white ;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
 
+    }
+    .guanBi:hover{
+        color: #009688;
+    }
+        h1{
+            margin-top: 30px;
+        }
    </style>
 <body>
 <div id="neirong">
 <div class="div layui-table">
-    <button id="tianJia">添加</button>
-    <button id="xingShi">全部显示</button>
+    <button id="tianJia" class="green">添加</button>
+    <button id="xingShi" class="green">全部显示</button>
     <button id="shanChu" class="shanchu">全部删除</button>
     <input id="xueHao" type="text" placeholder="请输入学号"/><button class="chaxun" id="xueHaoChaXun">查询</button>
     <input id="xingMing" type="text" placeholder="请输入姓名"/><button class="chaxun" id="xingMingChaXun">查询</button>
     <input id="banJi" type="text" placeholder="请输入年级"/><button class="chaxun" id="banJiChaXun">查询</button>
     <input  id="xingBie" type="text" placeholder="请输入性别"/><button class="chaxun" id="xingBieChaXun">查询</button>
 </div>
-<table class="layui-table">
+<table class="layui-table " >
     <colgroup>
         <col width="">
         <col width="">
@@ -193,6 +226,10 @@
     </form>
 </div>
 <div id="zhezhao" class="hide"></div>
+    <div id="tiShikuang" class="hide">
+        <p class="guanBi">X</p>
+    <h1 class="">你 的输入有误</h1>
+    </div>
 </div>
 <script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
 <script src="layui-v2.5.6/layui/layui.js"></script>
@@ -282,7 +319,17 @@
 //    var arr=[];//班级存储
 //    var xingBieArr=[];//性别存储
     //
+    var  arr=[];//年级数组
+    var xingBieArr=[];//性别数组
+    var $table = $('table');
+    var  currentPage = 0;//当前页默认值为0
+    var pageSize = 4;//每一页显示的数目
+    var sumRows = $table.find('#tbStudent tr').length;
+    var  sumPages = Math.ceil(sumRows/pageSize);//总页数
+    var  $pager = $('<div class="page"></div>');  //新建div，放入a标签,显示底部分页码
+    var  $pagess = $('#pageStyle');
     bindDataStudent();
+
    function  bindDataStudent() {//
 //        var tbStudent=$("#tbStudent");
 //        tbStudent.innerHTML="";//清空该ID里的所有信息
@@ -291,32 +338,39 @@
             $("#tbStudent").append("<tr><td>"+StudentsFileArr[i].studenttNo+"</td><td>"+StudentsFileArr[i].studenttName+"</td><td>"+StudentsFileArr[i].studentSex+"</td><td>"+StudentsFileArr[i].studentAge+"</td>" +
                 "<td>"+StudentsFileArr[i].studentClass+"</td><td>"+StudentsFileArr[i].birthday+"</td><td>"+StudentsFileArr[i].parentsName+"</td><td>"+StudentsFileArr[i].parentsPhone+"</td><td>"+StudentsFileArr[i].address+"</td>" +
                 "<td>"+StudentsFileArr[i].enrolledDate+"</td><td>"+StudentsFileArr[i].grade+"</td><td>"+StudentsFileArr[i].headeTeacher+"</td><td>"+StudentsFileArr[i].notes+"</td><td><button class='shanchu' onclick='del(\""+StudentsFileArr[i].studenttNo+"\")'>删除</button><button class='xiugai' onclick='xiugai(\""+StudentsFileArr[i].studenttNo+"\")'>修改</button></td></tr>")
+
+
+
         }//把循环遍历的所有数组显示在html里
-    }
+       $table.trigger("paging");
+   }
     //单行删除
 function del(j) {
     if(confirm("确定删除吗")){
-        for(var i=0;i<StudentsFileArr.length;i++){
-            if(j==StudentsFileArr[i].studenttNo){
-                StudentsFileArr.splice(i,1);
-                bindDataStudent()
+        for(var i=0;i<StudentsFileArr.length;i++) {
+            if (j == StudentsFileArr[i].studenttNo) {
+                StudentsFileArr.splice(i, 1);
+                bindDataStudent();
+
             }
         }
     }
-}
-    //添加页码
-    $(function jfid(){
-        var $table = $('table');
-        var currentPage = 0;//当前页默认值为0
-        var pageSize = 4;//每一页显示的数目
+   }
+   //添加页码
+    $(function (){
+        $table = $('table');
+         currentPage = 0;//当前页默认值为0
+         pageSize = 4;//每一页显示的数目
+        bindDataStudent();
         $table.bind('paging',function(){
 
-            $table.find('tbody tr').hide().slice(currentPage*pageSize,(currentPage+1)*pageSize).show();
+            $table.find('#tbStudent tr').hide().slice(currentPage*pageSize,(currentPage+1)*pageSize).show();
         });
-        var sumRows = $table.find('tbody tr').length;
-        var sumPages = Math.ceil(sumRows/pageSize);//总页数
 
-        var $pager = $('<div class="page"></div>');  //新建div，放入a标签,显示底部分页码
+        sumRows = $table.find('#tbStudent tr').length;
+       sumPages = Math.ceil(sumRows/pageSize);//总页数
+
+        $pager = $('<div class="page"></div>');  //新建div，放入a标签,显示底部分页码
         for(var pageIndex = 0 ; pageIndex<sumPages ; pageIndex++){
             $('<a href="#" id="pageStyle" onclick="changCss(this)"><span>'+(pageIndex+1)+'</span></a>').bind("click",{"newPage":pageIndex},function(event){
                 currentPage = event.data["newPage"];
@@ -329,7 +383,7 @@ function del(j) {
         $table.trigger("paging");
 
         //默认第一页的a标签效果
-        var $pagess = $('#pageStyle');
+        $pagess = $('#pageStyle');
         $pagess[0].style.backgroundColor="#009671";
         $pagess[0].style.color="#ffffff";
     });
@@ -354,7 +408,8 @@ function del(j) {
     //遮罩
     $("#zhezhao").click(function () {
         $("#zhezhao").hide();
-        $("#addDiv").hide()
+        $("#addDiv").hide();
+        $("#tiShikuang").hide()
     });
     //信息框
     $("#cencelAdd").click(function () {
@@ -398,17 +453,22 @@ function del(j) {
         var headeTeacher = $("#headeTeacher").val();//对应ID地址元素值
         var notes = $("#notes").val();//对应ID地址元素值
         if (studenttNo == "") {//判断用户是否输入
-            alert("请输入学号");
+            $("#tiShikuang").show();
+            $("#zhezhao").show();
+            $("h1").text("请输入学号！");
             return
         } else if (studenttName == "") {//判断用户是否输入
-            alert("请输入姓名");
+            $("#tiShikuang").show();
+            $("#zhezhao").show();
+            $("h1").text("请输入姓名！");
             return
         }
         if (stundno == "") {//判断该变量状态
-            var xuehao=chazhao(studenttNo).studenttNo;//搜索判断该 值并返回他的数组，再把数组中对应的值赋给左边
+            var xuehao=chaZhaoXueHao(studenttNo).studenttNo;//搜索判断该 值并返回他的数组，再把数组中对应的值赋给左边
             if (studenttNo == xuehao) {//判断是否相等
-                alert("该学号已存在");
-                console.log(studenttNo,xuehao);
+                $("#tiShikuang").show();
+                $("#zhezhao").show();
+                $("h1").text("该学号已存在！");
                 return
             } else {//把用户输入的值组合成对象
                 var obj = {"studenttNo": studenttNo, "studenttName": studenttName, "studentSex":studentSex,"studentAge": studentAge, "studentClass": studentClass,
@@ -455,21 +515,21 @@ function del(j) {
                     StudentsFileArr[j].grade = grade;
                     StudentsFileArr[j].headeTeacher = headeTeacher;
                     StudentsFileArr[j].notes =notes;
-                    alert("修改成功");
-                    $("#zhezhao").hide();
+//                    alert("修改成功");
+//                    $("#zhezhao").hide();
                     $("#addDiv").hide();
+                    $("#tiShikuang").show();
+                    $("#zhezhao").show();
+                    $("h1").text("修改成功！");
                     bindDataStudent();
                     break
                 }
             }
         }
-//        model("addDiv", "hide");
-//        bindDataStudent();
-
     });
     //修改
     function xiugai(e) {
-        var studenttNo=chazhao(e);
+        var studenttNo=chaZhaoXueHao(e);
         if(studenttNo){
             stundno=e;
             $("#zhezhao").show();//模态框显示
@@ -491,7 +551,7 @@ function del(j) {
         }
 }
     //查询判断是否存在
-    function chazhao(tuno) {
+    function chaZhaoXueHao(tuno) {
         for(var i=0;i<StudentsFileArr.length;i++){
             if(tuno==StudentsFileArr[i].studenttNo){//判断数组里是否存在该值
                 return StudentsFileArr[i];
@@ -502,71 +562,120 @@ function del(j) {
     //全部删除
 $("#shanChu").click(function () {
     $("#tbStudent").html("");
+
     });
     //学号查询
-$("#xueHaoChaXun").click(function () {
+    $("#xueHaoChaXun").click(function () {
         var xuehao=$("#xueHao").val();
-        var studenttNo=chazhao(xuehao);
+        var studenttNo=chaZhaoXueHao(xuehao);
         if(studenttNo){
             $("#tbStudent").html("");
             $("#tbStudent").html("<tr><td>"+studenttNo.studenttNo+"</td><td>"+studenttNo.studenttName+"</td><td>"+studenttNo.studentSex+"</td><td>"+studenttNo.studentAge+"</td>" +
                 "<td>"+studenttNo.studentClass+"</td><td>"+studenttNo.birthday+"</td><td>"+studenttNo.parentsName+"</td><td>"+studenttNo.parentsPhone+"</td><td>"+studenttNo.address+"</td>" +
                 "<td>"+studenttNo.enrolledDate+"</td><td>"+studenttNo.grade+"</td><td>"+studenttNo.headeTeacher+"</td><td>"+studenttNo.notes+"</td><td><button  onclick='del(\""+studenttNo.studenttNo+"\")'>删除</button><button  onclick='xiugai(\""+studenttNo.studenttNo+"\")'>修改</button></td></tr>")
         }else {
-            alert("你输入的学号不存在")
+            $("#tiShikuang").show();
+            $("#zhezhao").show();
+            $("h1").text("你输入的姓名不存在！")
         }
-});
+    });
+    //查询姓名判断是否存在
+    function chazhao(tuno) {
+        for(var i=0;i<StudentsFileArr.length;i++){
+            if(tuno==StudentsFileArr[i].studenttName){//判断数组里是否存在该值
+                return StudentsFileArr[i];
+            }
+        }
+        return false
+    }
+    //姓名查询
     $("#xingMingChaXun").click(function () {
         var xuehao=$("#xingMing").val();
-        bindDataStudent();
-            for(var i=0;i<StudentsFileArr.length;i++){
-                if(xuehao==StudentsFileArr[i].studenttName) {//判断数组里是否存在该值
+        var studenttName=chazhao(xuehao);
+//            for(var i=0;i<StudentsFileArr.length;i++){
+                if(studenttName) {//判断数组里是否存在该值
                     $("#tbStudent").html("");
-                    $("#tbStudent").html("<tr><td>" + StudentsFileArr[i].studenttNo + "</td><td>" + StudentsFileArr[i].studenttName + "</td><td>" + StudentsFileArr[i].studentSex + "</td><td>" + StudentsFileArr[i].studentAge + "</td>" +
-                        "<td>" + StudentsFileArr[i].studentClass + "</td><td>" + StudentsFileArr[i].birthday + "</td><td>" + StudentsFileArr[i].parentsName + "</td><td>" + StudentsFileArr[i].parentsPhone + "</td><td>" + StudentsFileArr[i].address + "</td>" +
-                        "<td>" + StudentsFileArr[i].enrolledDate + "</td><td>" + StudentsFileArr[i].grade + "</td><td>" + StudentsFileArr[i].headeTeacher + "</td><td>" + StudentsFileArr[i].notes + "</td><td><button  onclick='del(\"" + StudentsFileArr[i].studenttNo + "\")'>删除</button><button  onclick='xiugai(\"" + StudentsFileArr[i].studenttNo + "\")'>修改</button></td></tr>")
-
+                    $("#tbStudent").html("<tr><td>" + studenttName.studenttNo + "</td><td>" + studenttName.studenttName + "</td><td>" + studenttName.studentSex + "</td><td>" + studenttName.studentAge + "</td>" +
+                        "<td>" + studenttName.studentClass + "</td><td>" + studenttName.birthday + "</td><td>" + studenttName.parentsName + "</td><td>" + studenttName.parentsPhone + "</td><td>" + studenttName.address + "</td>" +
+                        "<td>" + studenttName.enrolledDate + "</td><td>" + studenttName.grade + "</td><td>" + studenttName.headeTeacher + "</td><td>" + studenttName.notes + "</td><td><button class='shanchu' onclick='del(\"" + studenttName.studenttNo + "\")'>删除</button><button class='xiugai' onclick='xiugai(\"" + studenttName.studenttNo + "\")'>修改</button></td></tr>")
+                        return
+                }else{
+                    $("#tiShikuang").show();
+                    $("#zhezhao").show();
+                    $("h1").text("你输入的姓名不存在！")
                 }
-            }
+//                else if(xuehao!=StudentsFileArr[i].studenttName){
+//                    $("#tiShikuang").show();
+//                    $("#zhezhao").show();
+//                    $("h1").text("你输入的姓名不存在！")
+//                }
+
+//            }
+
     });
     //年级查询
     $("#banJiChaXun").click(function () {
         var xuehao=$("#banJi").val();
-        bindDataStudent();
-     var  arr=[];
         for(var i=0;i<StudentsFileArr.length;i++){
             if(xuehao==StudentsFileArr[i].grade){//判断数组里是否存在该值
                  arr.push(StudentsFileArr[i]);
-                $("#tbStudent").html("");
+                nianJi();
             }
+    }if(arr==""){
+            $("#tiShikuang").show();
+            $("#zhezhao").show();
+            $("h1").text("你输入的年级不存在！")
         }
+
+    });
+    function nianJi() {//年级数组循环
+        $("#tbStudent").html("");
         for(var j=0;j< arr.length;j++){
             $("#tbStudent").append("<tr><td>"+arr[j].studenttNo+"</td><td>"+arr[j].studenttName+"</td><td>"+arr[j].studentSex+"</td><td>"+arr[j].studentAge+"</td>" +
                 "<td>"+arr[j].studentClass+"</td><td>"+arr[j].birthday+"</td><td>"+arr[j].parentsName+"</td><td>"+arr[j].parentsPhone+"</td><td>"+arr[j].address+"</td>" +
-                "<td>"+arr[j].enrolledDate+"</td><td>"+arr[j].grade+"</td><td>"+arr[j].headeTeacher+"</td><td>"+arr[j].notes+"</td><td><button  onclick='del(\""+arr[j].studenttNo+"\")'>删除</button><button  onclick='xiugai(\""+arr[j].studenttNo+"\")'>修改</button></td></tr>"
-            )
+                "<td>"+arr[j].enrolledDate+"</td><td>"+arr[j].grade+"</td><td>"+arr[j].headeTeacher+"</td><td>"+arr[j].notes+"</td><td><button class='shanchu' onclick='del(\""+arr[j].studenttNo+"\")'>删除</button><button class='xiugai' onclick='xiugai(\""+arr[j].studenttNo+"\")'>修改</button></td></tr>"
+            );
+            $table.trigger("paging");
         }
-    });
-
+    }
 
 
     //性别查询
     $("#xingBieChaXun").click(function () {
+        $("#tbStudent").html("");
         var xuehao=$("#xingBie").val();
-        var xingBieArr=[];
         for(var i=0;i<StudentsFileArr.length;i++){
             if(xuehao==StudentsFileArr[i].studentSex){//判断数组里是否存在该值
                 xingBieArr.push(StudentsFileArr[i]);
+                xingBie();
             }
-        } $("#tbStudent").html("");
+        } if(xuehao!="男"&&xuehao!="女"){
+            $("#tiShikuang").show();
+            $("#zhezhao").show();
+            $("h1").text("你输入的有误！")
+        }
+
+    });
+    function xingBie() {//性别数组循环
+        $("#tbStudent").html("");
         for(var j=0;j< xingBieArr.length;j++){
             $("#tbStudent").append("<tr><td>"+xingBieArr[j].studenttNo+"</td><td>"+xingBieArr[j].studenttName+"</td><td>"+xingBieArr[j].studentSex+"</td><td>"+xingBieArr[j].studentAge+"</td>" +
                 "<td>"+xingBieArr[j].studentClass+"</td><td>"+xingBieArr[j].birthday+"</td><td>"+xingBieArr[j].parentsName+"</td><td>"+xingBieArr[j].parentsPhone+"</td><td>"+xingBieArr[j].address+"</td>" +
-                "<td>"+xingBieArr[j].enrolledDate+"</td><td>"+xingBieArr[j].grade+"</td><td>"+xingBieArr[j].headeTeacher+"</td><td>"+xingBieArr[j].notes+"</td><td><button  onclick='del(\""+xingBieArr[j].studenttNo+"\")'>删除</button><button  onclick='xiugai(\""+xingBieArr[j].studenttNo+"\")'>修改</button></td></tr>")
+                "<td>"+xingBieArr[j].enrolledDate+"</td><td>"+xingBieArr[j].grade+"</td><td>"+xingBieArr[j].headeTeacher+"</td><td>"+xingBieArr[j].notes+"</td><td><button class='shanchu' onclick='del(\""+xingBieArr[j].studenttNo+"\")'>删除</button><button class='xiugai' onclick='xiugai(\""+xingBieArr[j].studenttNo+"\")'>修改</button></td></tr>")
+            $table.trigger("paging");
         }
-    });
+    }
     $("#xingShi").click(function () {
-        bindDataStudent();
+        if($("#tbStudent").html()==""){
+            $("#tbStudent").html("")
+        }else {
+            bindDataStudent();
+        }
+
+    });
+    $(".guanBi").click(function () {
+        $("#tiShikuang").hide();
+        $("#zhezhao").hide();
     })
 </script>
 </body>
