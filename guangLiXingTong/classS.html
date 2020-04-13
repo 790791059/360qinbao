@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="layui/css/layui.css" >
+    <title>班级管理</title>
+    <style>
+        .classContanier #topBar{
+            overflow: hidden;
+        }
+        .classContanier #topBar .top_btn{
+            float: left;
+        }
+        .classContanier #topBar>div:nth-of-type(2){
+            float: left;
+           margin-left: 20px;
+        }
+        .classContanier{
+            position: relative;
+        }
+        #topBar>div>button{
+            background-color: rgb(0,150,136);
+        }
+        #topBar>div #btnDelAll{
+            background-color: red;
+        }
+        #topBar>div>button:hover{
+            background-color: rgb(49,112,143);
+        }
+        #topBar>div> #btnDelAll:hover{
+            background-color: rgb(49,112,143);
+        }
+
+        /*翻页*/
+        .fanYe{
+            float: left;
+            /*margin-right: 290px;*/
+        }
+        .fanYe>a{
+            display: inline-block;
+            width: 30px;
+            height:30px;
+            line-height: 30px;
+            text-align: center;
+            margin-left: 10px;
+            /*background-color:#9cf7d4;*/
+            /*border-radius: 10px;*/
+            border: 1px solid gainsboro;
+        }
+        .fanYe>a:hover{
+            background-color: rgb(204,204,204);
+        }
+        /*表格下的btn*/
+        tbody button{
+            border: 0;
+            outline: none;
+            /*background-color: #9cf7d4;*/
+            /*border-radius: 10px;*/
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin-left: 10px;
+            /*color: white;*/
+        }
+        tbody button:nth-of-type(1){
+            background-color:dodgerblue ;
+        }
+        tbody button:nth-of-type(2){
+            background-color:rgb(255,184,0) ;
+        }
+        tbody button:nth-of-type(3){
+            background-color:dodgerblue ;
+        }
+        tbody button:hover{
+            background-color: rgb(49,112,143);
+        }
+        /*//添加表单*/
+        #addForm{
+            position: absolute;
+            width: 360px;
+            height: 400px;
+            top:50px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: #e7f3ff;
+            padding-left: 20px;
+            z-index: 2;
+
+        }
+        #addForm p{
+            margin-top: 10px;
+        }
+        #addForm input[type="text"]{
+            width: 175px;
+        }
+        #addForm input[type="date"]{
+            width: 175px;
+        }
+        #addForm #addClassType{
+            width: 175px;
+        }
+        #addForm .formWord{
+            display: inline-block;
+            width: 65px;
+            margin-right: 10px;
+        }
+        #addForm>form>p:nth-last-child(1){
+            float: right;
+            margin-right: 30px;
+        }
+        /*模态框*/
+        #zheZhao{
+            /*display: none;*/
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,.4);
+        }
+        /*.classContanier select{*/
+            /*float: left;*/
+        /*}*/
+        .hide{
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+       button{
+           color: white;
+           text-align: center;
+       }
+    </style>
+</head>
+<body>
+<div class="classContanier">
+    <div id="topBar">
+        <div class="top_btn">
+            <button class="btn " id="add_btn_choose" > <i class="layui-icon">&#xe654;</i>添加</button>
+            <button class="btn " id="btnDelAll"> <i class="layui-icon">&#xe640;</i>全部删除</button>
+        </div>
+        <!--搜索-->
+        <div>
+
+            <!--二级搜索-->
+            <form action="" class="form-inline">
+                <select name="" id="searchSub1" class="form-control">
+                    <option value="5">选择班级类型</option>
+                    <option value="1">小班</option>
+                    <option value="2">中班</option>
+                    <option value="3">大班</option>
+                    <option value="4">学前班</option>
+                </select>
+                <select name="" id="searchSub2" class="form-control" >
+                    <option value="5">选择班级编号</option>
+                    <option value="1">1班</option>
+                    <option value="2">2班</option>
+                </select>
+                <button class=" form-control layui-btn" id="searchGo"> <i class="layui-icon">&#xe615;</i>查询</button>
+            </form>
+
+
+        </div>
+    </div>
+    <table class="table table-responsive table-bordered text-center layui-table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>班级编号</th>
+            <th>班级类型</th>
+            <th>班级名称</th>
+            <th>班主任</th>
+            <th>副班主任</th>
+            <th>创班时间</th>
+            <th>
+                操作
+            </th>
+        </tr>
+        </thead>
+        <tbody class="teaList">
+        </tbody>
+    </table>
+    <div id="addForm" class="hide">
+        <form action="#" class="form-inline">
+            <h2 class="text-center">学生信息</h2>
+            <p class="form-group"><span class="formWord">id</span><input type="text" id="addId" class="form-control"></p>
+            <p class="form-group"><span class="formWord">编号</span><input type="text" id="addNum" class="form-control"></p>
+            <p class="form-group"><span class="formWord">班级类型</span>
+                <select name=""  id="addClassType"   class="form-control">
+                    <option value="1">小班</option>
+                    <option value="2">大班</option>
+                    <option value="3">中班</option>
+                    <option value="4">学前班</option>
+                </select>
+            </p>
+            <p class="form-group"><span class="formWord" >班级名称</span><input type="text" id="addClassName" class="form-control"></p>
+            <p class="form-group"><span class="formWord" >班主任</span><input type="text" id="addHeadTea" class="form-control"></p>
+            <p class="form-group"><span class="formWord" > 副班主任</span><input type="text" id="addViceTea" class="form-control"></p>
+            <p class="form-group"><span class="formWord" > 创班时间</span><input type="date" id="addclassTime" class="form-control"> </p>
+            <p class="form-group">
+                <button  id="btnAddSubmit" class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+                <button class="layui-btn"  id="btn_cancel">取消</button>
+            </p>
+        </form>
+    </div>
+    <div class="fanYe">
+        <a class="glyphicon glyphicon-chevron-left" id="prePage" onclick="ChangeCss(this)"></a>
+        <a id="page1" onclick="ChangeCss(this)">1</a>
+        <a id="page2" onclick="ChangeCss(this)">2</a>
+        <a id="page3" onclick="ChangeCss(this)">3</a>
+        <a id="page4" onclick="ChangeCss(this)">4</a>
+        <a class="glyphicon glyphicon-chevron-right" id="nextPage" onclick="ChangeCss(this)"></a>
+    </div>
+</div>
+<!--模态框-->
+<div class="zheZhao hide" id="zheZhao"></div>
+<script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="layui/layui.js"></script>
+<script src="layer-v3.1.1/layer/layer.js"></script>
+<script src="layui/layui.all.js"></script>
+<script type="text/javascript">
+//    教师数据
+    var classArr = [
+        {
+            "classId":"201601","classTypeName":"学前班","classNum":"1班","className":"小花班","headeTeacher":"李四","viceTeacher":"张三","classTime":"2020-9-1",
+        },
+        {
+            "classId":"201602", "classTypeName":"学前班","classNum":"2班","className":"奇思妙想班","headeTeacher":"许泓鑫","viceTeacher":"许子谆","classTime":"2020-9-1",
+        },
+        {
+            "classId":"201603", "classTypeName":"小班","classNum":"1班","className":"天天向上班","headeTeacher":"严昌熙","viceTeacher":"严邦立","classTime":"2019-9-1",
+        },
+        {
+            "classId":"201604", "classTypeName":"小班","classNum":"2班","className":"启航班","headeTeacher":"凤沁函","viceTeacher":"凤浩正","classTime":"2019-9-1",
+        },
+        {
+            "classId":"201701","classTypeName":"中班","classNum":"1班","className":"蔷薇班","headeTeacher":"习宁玲","viceTeacher":"习晨兰","classTime":"2018-9-1",
+        },
+        {
+            "classId":"201702","classTypeName":"大班","classNum":"1班","className":"我们这一班","headeTeacher":"羊轩荣","viceTeacher":"羊宝琴","classTime":"2017-9-1",
+        },
+        {
+            "classId":"201703","classTypeName":"学前班","classNum":"1班","className":"小花班","headeTeacher":"李四","viceTeacher":"张三","classTime":"2020-9-1",
+        },
+        {
+            "classId":"201704", "classTypeName":"学前班","classNum":"2班","className":"奇思妙想班","headeTeacher":"许泓鑫","viceTeacher":"许子谆","classTime":"2020-9-1",
+        },
+        {
+            "classId":"201801", "classTypeName":"小班","classNum":"1班","className":"天天向上班","headeTeacher":"严昌熙","viceTeacher":"严邦立","classTime":"2019-9-1",
+        },
+        {
+            "classId":"201802", "classTypeName":"小班","classNum":"2班","className":"启航班","headeTeacher":"凤沁函","viceTeacher":"凤浩正","classTime":"2019-9-1",
+        },
+        {
+            "classId":"201803","classTypeName":"中班","classNum":"1班","className":"蔷薇班","headeTeacher":"习宁玲","viceTeacher":"习晨兰","classTime":"2018-9-1",
+        },
+        {
+            "classId":"201804","classTypeName":"大班","classNum":"1班","className":"我们这一班","headeTeacher":"羊轩荣","viceTeacher":"羊宝琴","classTime":"2017-9-1",
+        },
+        {
+            "classId":"201901","classTypeName":"学前班","classNum":"1班","className":"小花班","headeTeacher":"李四","viceTeacher":"张三","classTime":"2020-9-1",
+        },
+        {
+            "classId":"201902", "classTypeName":"学前班","classNum":"2班","className":"奇思妙想班","headeTeacher":"许泓鑫","viceTeacher":"许子谆","classTime":"2020-9-1",
+        },
+        {
+            "classId":"201903", "classTypeName":"小班","classNum":"1班","className":"天天向上班","headeTeacher":"严昌熙","viceTeacher":"严邦立","classTime":"2019-9-1",
+        },
+        {
+            "classId":"201904", "classTypeName":"小班","classNum":"2班","className":"启航班","headeTeacher":"凤沁函","viceTeacher":"凤浩正","classTime":"2019-9-1",
+        },
+        {
+            "classId":"202001","classTypeName":"中班","classNum":"1班","className":"蔷薇班","headeTeacher":"习宁玲","viceTeacher":"习晨兰","classTime":"2018-9-1",
+        },
+        {
+            "classId":"202002","classTypeName":"大班","classNum":"1班","className":"我们这一班","headeTeacher":"羊轩荣","viceTeacher":"羊宝琴","classTime":"2017-9-1",
+        },
+        {
+            "classId":"202003","classTypeName":"中班","classNum":"1班","className":"蔷薇班","headeTeacher":"习宁玲","viceTeacher":"习晨兰","classTime":"2018-9-1",
+        },
+        {
+            "classId":"202004","classTypeName":"大班","classNum":"1班","className":"我们这一班","headeTeacher":"羊轩荣","viceTeacher":"羊宝琴","classTime":"2017-9-1",
+        }
+    ];//班级数组
+    var classTypeArr=["小班","中班","大班","学前班"];
+    var classNoOper="";//用于判断是添加还是修改，空表示添加，非空则是修改
+    var searchFirst=$("#searchFirst option:selected").val();//一级筛选
+    var searchSub1=$("#searchSub1 option:selected").val();//二级筛选1
+    var searchSub2=$("#searchSub2 option:selected").val();//二级筛选2
+    var operSearch="";//用于判断是搜索进行的操作还是原始数据进行的操作,空是原始，“1"是搜索
+    var page=1;//上一页页码，默认显示第一页
+//    layui渲染表单元素
+//    layui.use("form",function () {
+//        var form = layui.form;//
+//        form.render();
+//    });
+//模态框
+//    bindData();
+//    查看
+    function bindData(){
+        $(".teaList")[0].innerHTML="";
+        for(var i=0;i<6;i++){
+            $(".teaList")[0].innerHTML+="<tr> <th>"+classArr[i].classId+"</th> <th>"+classArr[i].classNum+"</th> <th>"+classArr[i].classTypeName+"</th> " +
+                "<th>"+classArr[i].className+"</th> <th>"+classArr[i].headeTeacher+"</th> <th>"+classArr[i].viceTeacher+"</th> <th>"+classArr[i].classTime+"</th> <th> " +
+                "<button onclick='updateClass("+classArr[i].classId+")' >修改</button> <button onclick='delEach("+classArr[i].classId+")'>删除</button> <button onclick='shengClass("+classArr[i].classId+")'>升级</button> </th> </tr>"
+        }
+    }
+//    增加班级
+    function addData(){
+//        先获取值
+        var classId=$("#addId").val();//id
+        var classTypeName=$("#addClassType option:selected").val();//类型
+        var classNum=$("#addNum").val();//编号
+        var className=$("#addClassName").val();//名称
+        var headeTeacher=$("#addHeadTea").val();//班主任
+        var viceTeacher=$("#addViceTea").val();//副班主任
+        var classTime=$("#addclassTime").val();//创建时间
+//        根据班级编号判断是否存在
+//        if(classId==""){//id为空
+//            alert("id不能为空");
+//        }else if(classNum==""){
+//            alert("班级名称不能为空");
+//        }
+        //判断是否存在班级
+        if(classNoOper==""){//添加
+            if(checkClaNo(classId)){
+                alert("班级编号已被占用，请重写");
+            }else{
+                var obj= {
+                    "classId":classId,"classTypeName":classTypeName,"classNum":classNum,"className":className,"headeTeacher":headeTeacher,"viceTeacher":viceTeacher,"classTime":classTime
+                };
+                classArr.push(obj);
+            }
+
+        }else{//修改
+            for(var i=0;i<classArr.length;i++){
+                console.log("jjj");
+                if(classArr[i].classId==classNoOper){//只修改班主任，和副班主任
+                    classArr[i].headeTeacher=headeTeacher;
+                    classArr[i].viceTeacher=viceTeacher;
+//                    console.log(classArr[i]);
+                    break;
+                }
+            }
+            $("#btnAddSubmit").on("click",function () {
+                $("#addForm").removeClass("show");
+                $("#addForm").addClass("hide");
+
+            });//提交数据
+
+        }
+        if(operSearch==""){
+            bindData();
+        }else if(operSearch=="1"){
+            searchClass();
+        }
+//        bindData();
+        //添加完数据后清空
+         $("#addId").val("");//id
+         $("#addClassType option:selected").val("");//类型
+         $("#addNum").val("");//编号
+         $("#addClassName").val("");//名称
+         $("#addHeadTea").val("");//班主任
+         $("#addViceTea").val("");//副班主任
+         $("#addclassTime").val("");//创建时间
+
+
+    }
+//    检查班级是否存在
+    function checkClaNo(classId){
+    for(var i=0;i<classArr.length;i++){
+        if(classId==classArr[i].classId){
+            return true;
+        }
+    }
+    return false;
+}
+//添加
+    $("#add_btn_choose").on("click",function () {
+        showForm();
+        showModel();
+    });
+  $("#btnAddSubmit").on("click",function () {
+     addData();
+    //隐藏表单
+     hideForm();
+     hideModel();
+//      console.log(2222)
+});//提交数据
+//    取消添加
+    $("#btn_cancel").on("click",function () {
+        hideForm();
+        hideModel();
+    });
+    //删除全部
+    function delAll() {
+        if(confirm("确定删除全部吗？")){
+            classArr=[];
+        }
+        bindData();
+    }
+    //删除单个
+    function delEach(classId){
+        if(confirm("确定删除吗？")){
+            for(var i=0;i<classArr.length;i++){
+                if(classId==classArr[i].classId){
+                    classArr.splice(i,1);
+                    break;
+                }
+            }
+        }
+        if(operSearch==""){
+            bindData();
+        }else if(operSearch=="1"){
+            searchClass();
+        }
+        console.log("1111")
+    }
+    //点击全部删除
+    $("#btnDelAll").on("click",function () {
+        delAll();
+    });
+    //得到该班级的信息
+    function getClassInfo(classId){
+        for(var i=0;i<classArr.length;i++){
+            if(classArr[i].classId==classId){
+               return classArr[i];
+            }
+        }
+        return null;
+    }
+//    显示表单
+    function showForm(){
+        $("#addForm").removeClass("hide");
+        $("#addForm").addClass("show");
+    }
+//    隐藏表单
+    function hideForm(){
+        $("#addForm").removeClass("show");
+        $("#addForm").addClass("hide");
+}
+//显示模态框
+    function showModel() {
+        $("#zheZhao").removeClass("hide");
+        $("#zheZhao").addClass("show");
+    }
+//    隐藏模态框
+    function hideModel() {
+        $("#zheZhao").removeClass("show");
+        $("#zheZhao").addClass("hide");
+    }
+    //修改
+    function updateClass(classId) {
+        //显示表单
+        showForm();
+        showModel();
+        var classObj=getClassInfo(classId);
+//        将信息显示在表单上
+        if(classObj){
+            classNoOper=classObj.classId;
+            $("#addId").val(classObj.classId);//id
+            $("#addClassType option:selected").val(classObj.classTypeName);//类型
+            $("#addNum").val(classObj.classNum);//编号
+            $("#addClassName").val(classObj.className);//名称
+            $("#addHeadTea").val(classObj.headeTeacher);//班主任
+            $("#addViceTea").val(classObj.viceTeacher);//副班主任
+            $("#addclassTime").val(classObj.classTime);//创建时间
+        }
+    }
+//    升班
+    function shengClass(classId) {
+        //    小班，中班，大班，一级一级的生，学前班毕业
+        console.log("shenban");
+        var classObj=getClassInfo(classId);
+        if(confirm("确定升年级吗？")){
+            if(classObj.classTypeName=="学前班"){
+                alert("已经是学前班了不能升班");
+            }else {//升班
+               for(var i=0;i<classArr.length;i++){
+                   if(classObj.classTypeName==classArr[i].classTypeName){//找到当前年级
+                       for(var j=0;j<classTypeArr.length;j++){//
+                           if(classArr[i].classTypeName==classTypeArr[j]){
+                               classArr[i].classTypeName=classTypeArr[j+1];
+                               break;
+                           }
+                       }
+                       break;
+                   }
+               }
+            }
+        }
+//        bindData();
+        if(operSearch==""){
+            bindData();
+        }else if(operSearch=="1"){
+//            shengClass(classId);
+            searchClass(classId);
+        }
+
+    }
+//    显示下拉列表
+    function selectShow(type) {
+        type.removeClass("hide");
+        type.addClass("show");
+    }
+    function selectHide(type){
+        type.removeClass("show");
+        type.addClass("hide");
+    }
+//    先找到班级类型，在在班级类型中查找班级编号
+    function searchClass() {
+//        operSearch="1";
+        var searchSub1=$("#searchSub1 option:selected").text();//一级筛选
+        var searchSub2=$("#searchSub2 option:selected").text();//二级筛选
+        var yijiSearch=[];
+        //找到一级
+        for(var i=0;i<classArr.length;i++){
+            if(classArr[i].classTypeName==searchSub1){
+                yijiSearch.push(classArr[i]);
+            }
+        }
+//        console.log(yijiSearch);
+//        console.log()
+        $(".teaList")[0].innerHTML="";
+        for(var j=0;j<yijiSearch.length;j++){
+            if(yijiSearch[j].classNum==searchSub2){
+                    $(".teaList")[0].innerHTML+="<tr> <th>"+yijiSearch[j].classId+"</th> <th>"+yijiSearch[j].classNum+"</th> <th>"+yijiSearch[j].classTypeName+"</th> " +
+                        "<th>"+yijiSearch[j].className+"</th> <th>"+yijiSearch[j].headeTeacher+"</th> <th>"+yijiSearch[j].viceTeacher+"</th> <th>"+yijiSearch[j].classTime+"</th> <th> " +
+                        "<button onclick='updateClass("+yijiSearch[j].classId+")'>修改</button> <button onclick='delEach("+yijiSearch[j].classId+")'>删除</button> <button onclick='shengClass("+yijiSearch[j].classId+")'>升级</button> </th> </tr>"
+            }
+        }
+    }
+    //搜索
+    $("#searchGo").on("click",function () {
+        operSearch="1";
+        searchClass();
+    });
+//    翻页
+    function fanYe(page){
+//        每页显示6条数据，点击下一页，变换，要知道当前是第range几页，下一页page+，
+// 上一页，page-，点击数字获得当前页,记录当前页码和上一页页码
+        $(".teaList")[0].innerHTML="";
+        for(var i=(page-1)*6;i<page*6;i++){
+            $(".teaList")[0].innerHTML+="<tr> <th>"+classArr[i].classId+"</th> <th>"+classArr[i].classNum+"</th> <th>"+classArr[i].classTypeName+"</th> " +
+                "<th>"+classArr[i].className+"</th> <th>"+classArr[i].headeTeacher+"</th> <th>"+classArr[i].viceTeacher+"</th> <th>"+classArr[i].classTime+"</th> <th> " +
+                "<button onclick='updateClass("+classArr[i].classId+")'>修改</button> <button onclick='delEach("+classArr[i].classId+")'>删除</button> <button onclick='shengClass("+classArr[i].classId+")'>升级</button> </th> </tr>"
+        }
+    }
+//    上一页
+    function prePage() {
+        console.log(page);
+        if(page==1){
+            alert("已经是第一页了");
+        }else{
+            page=page-1;
+            console.log(page);
+            fanYe(page);
+        }
+
+
+    }
+    $("#prePage").on("click",prePage);
+//    下一页
+    function nextPage() {
+        if(page==4){
+            alert("已经是最后了");
+        }else{
+            page=page+1;
+            fanYe(page);
+        }
+    }
+    $("#nextPage").on("click",nextPage);
+    //默认显示第一页
+    fanYe(1);
+    $("#page1").on("click",function () {
+        fanYe(1);
+    });
+    $("#page2").on("click",function () {
+        fanYe(2);
+    });
+    $("#page3").on("click",function () {
+        fanYe(3);
+    });
+    $("#page4").on("click",function () {
+        fanYe(4);
+    });
+
+
+//    点击翻页按钮改变颜色
+function ChangeCss(obj){
+    var arr = document.getElementsByTagName("a");
+    for(var i=0;i<arr.length;i++){
+        if(obj==arr[i]){       //当前页样式
+            obj.style.backgroundColor="#009671";
+            obj.style.color="#ffffff";
+
+        }
+        else
+        {
+            arr[i].style.color="";
+            arr[i].style.backgroundColor="";
+        }
+    }
+}
+
+
+//layer.confirm('确定要删除任务么？', {
+//    btn: ['确定','取消'] //按钮
+//}, function(){
+//    $(this).attr('href', "/task/delete?id={{$v->id}}")
+//});
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
