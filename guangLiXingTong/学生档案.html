@@ -616,6 +616,7 @@ $("#shanChu").click(function () {
     //年级查询
     $("#banJiChaXun").click(function () {
         var xuehao=$("#banJi").val();
+       arr=[];
         for(var i=0;i<StudentsFileArr.length;i++){
             if(xuehao==StudentsFileArr[i].grade){//判断数组里是否存在该值
                  arr.push(StudentsFileArr[i]);
@@ -624,7 +625,8 @@ $("#shanChu").click(function () {
     }if(arr==""){
             $("#tiShikuang").show();
             $("#zhezhao").show();
-            $("h1").text("你输入的年级不存在！")
+            $("h1").text("你输入的年级不存在！");
+
         }
 
     });
@@ -642,17 +644,17 @@ $("#shanChu").click(function () {
 
     //性别查询
     $("#xingBieChaXun").click(function () {
-        $("#tbStudent").html("");
+        xingBieArr=[];
         var xuehao=$("#xingBie").val();
         for(var i=0;i<StudentsFileArr.length;i++){
             if(xuehao==StudentsFileArr[i].studentSex){//判断数组里是否存在该值
                 xingBieArr.push(StudentsFileArr[i]);
                 xingBie();
             }
-        } if(xuehao!="男"&&xuehao!="女"){
+        } if(xingBieArr==""){
             $("#tiShikuang").show();
             $("#zhezhao").show();
-            $("h1").text("你输入的有误！")
+            $("h1").text("你输入的有误！");
         }
 
     });
