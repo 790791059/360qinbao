@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui-v2.5.6/layui/css/layui.css"  media="all">
+    <style type="text/css">
+        .div{
+            position:relative;
+        }
+        .beijing {
+           background-color: #02C493;
+            height: auto;
+
+
+        }
+        .img1{
+            margin-left: 200px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .denglutu{
+            background-image: url("img/user_bg.png");
+            height: 550px;
+            width:350px;
+            background-repeat: no-repeat;
+           position: absolute;
+            padding-left: 35px;
+            top: 50px;
+            right: 100px;
+        }
+.changhao{
+    width:200px;
+    height:40px;
+    border-radius:4px;
+    border:1px solid rgb(106, 107, 114);
+    background: url('img/人像.png') 8px 8px no-repeat;
+    padding-left: 32px;
+    margin-top: 180px;
+}
+        .mima{
+            width:200px;
+            height:40px;
+            border-radius:4px;
+            border:1px solid rgb(106, 107, 114);
+            background: url('img/锁_lock.png') 8px 8px no-repeat;
+            padding-left: 32px;
+           margin-top: 30px;
+        }
+        .denglu{
+            width:230px;
+            margin-top: 30px;
+            border-radius:4px;
+            height: 40px;
+            font-size: 20px;
+        }
+        p{
+            height: 15px;
+            width: 15px;
+            line-height: 15px;
+            border: 0.5px solid rgba(192, 192, 192, 0.61);
+            text-align: center;
+        }
+
+        .fofat {
+           position: absolute;
+            display: inline-block;
+            left: 25px;
+            top: 0;
+        }
+        .jizhuzhanghao{
+            position: relative;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="div " content="width=device-width, initial-scale=1, maximum-scale=1">
+<div class="beijing">
+    <img  class="img1" src="img/大图.png"/>
+    <form class="denglutu" type="">
+<input class="changhao" type="text" placeholder="用户名"/>
+<input class="mima" type="password" placeholder="密码" autocomplete="new-password"/><br/>
+        <div class="jizhuzhanghao"><p ><img src="img/index_check.png" id="img"/></p><span class="fofat">记住账号</span></div>
+        <button type="submit" class="layui-btn layui-btn-#02C493 denglu">登录</button>
+    </form>
+</div>
+</div>
+<script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
+<script src="layui-v2.5.6/layui/layui.js"></script>
+<script type="text/javascript">
+    $("p").click(function () {
+        $("#img").toggle();
+    })
+</script>
+</body>
+</html>

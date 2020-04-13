@@ -153,8 +153,7 @@
         }
     }
     setInterval(timer,100);
-    $("#leftMenu a").click(function () {
-        var e=window.event||arguments[0];
+    $("#leftMenu a").click(function (e) {
         e.preventDefault();
         $("#mainFrame").load($(this).attr("href"));
     });

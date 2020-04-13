@@ -81,15 +81,13 @@
         height: 30px;
         border-radius: 2px;
         border: none;
-        margin: 4px;
+        margin: 5px;
     }
     #xingShi {
         width: 70px;
-        margin: 0;
     }
     #shanChu{
-        width: 90px;
-        padding-left: 5px;
+        width: 70px;
     }
     button:hover{
         background-color:#31708F ;
@@ -98,13 +96,11 @@
         color: white;
     }
     .xiugai{
-        padding-left: 12px;
-
+        background-color: #FFB800;
     }
-    .shanChu{
-
-        padding-left: 12px;
-     }
+    .shanchu{
+        background-color: red;
+    }
     .chaxun{
         background-color: #1E9FFF;
     }
@@ -167,13 +163,13 @@
 <body>
 <div id="neirong">
 <div class="div layui-table">
-    <button id="tianJia" class="green"><i class="layui-icon">&#xe654;</i>添加</button>
+    <button id="tianJia" class="green">添加</button>
     <button id="xingShi" class="green">全部显示</button>
-    <button id="shanChu" class="green"><i class="layui-icon">&#xe640;</i>全部删除</button>
-    <input id="xueHao" type="text" placeholder="请输入学号"/><button class="chaxun" id="xueHaoChaXun"><i class="layui-icon">&#xe615;</i>查询</button>
-    <input id="xingMing" type="text" placeholder="请输入姓名"/><button class="chaxun" id="xingMingChaXun"><i class="layui-icon">&#xe615;</i>查询</button>
-    <input id="banJi" type="text" placeholder="请输入年级"/><button class="chaxun" id="banJiChaXun"><i class="layui-icon">&#xe615;</i>查询</button>
-    <input  id="xingBie" type="text" placeholder="请输入性别"/><button class="chaxun" id="xingBieChaXun"><i class="layui-icon">&#xe615;</i>查询</button>
+    <button id="shanChu" class="shanchu">全部删除</button>
+    <input id="xueHao" type="text" placeholder="请输入学号"/><button class="chaxun" id="xueHaoChaXun">查询</button>
+    <input id="xingMing" type="text" placeholder="请输入姓名"/><button class="chaxun" id="xingMingChaXun">查询</button>
+    <input id="banJi" type="text" placeholder="请输入年级"/><button class="chaxun" id="banJiChaXun">查询</button>
+    <input  id="xingBie" type="text" placeholder="请输入性别"/><button class="chaxun" id="xingBieChaXun">查询</button>
 </div>
 <table class="layui-table " >
     <colgroup>
@@ -341,7 +337,7 @@
         for(var i=0;i<StudentsFileArr.length;i++){//循环遍历
             $("#tbStudent").append("<tr><td>"+StudentsFileArr[i].studenttNo+"</td><td>"+StudentsFileArr[i].studenttName+"</td><td>"+StudentsFileArr[i].studentSex+"</td><td>"+StudentsFileArr[i].studentAge+"</td>" +
                 "<td>"+StudentsFileArr[i].studentClass+"</td><td>"+StudentsFileArr[i].birthday+"</td><td>"+StudentsFileArr[i].parentsName+"</td><td>"+StudentsFileArr[i].parentsPhone+"</td><td>"+StudentsFileArr[i].address+"</td>" +
-                "<td>"+StudentsFileArr[i].enrolledDate+"</td><td>"+StudentsFileArr[i].grade+"</td><td>"+StudentsFileArr[i].headeTeacher+"</td><td>"+StudentsFileArr[i].notes+"</td><td><button class='layui-btn layui-btn-danger shanChu' onclick='del(\""+StudentsFileArr[i].studenttNo+"\")'>删除</button><button class='layui-btn layui-btn-warm xiugai' onclick='xiugai(\""+StudentsFileArr[i].studenttNo+"\")'>修改</button></td></tr>")
+                "<td>"+StudentsFileArr[i].enrolledDate+"</td><td>"+StudentsFileArr[i].grade+"</td><td>"+StudentsFileArr[i].headeTeacher+"</td><td>"+StudentsFileArr[i].notes+"</td><td><button class='shanchu' onclick='del(\""+StudentsFileArr[i].studenttNo+"\")'>删除</button><button class='xiugai' onclick='xiugai(\""+StudentsFileArr[i].studenttNo+"\")'>修改</button></td></tr>")
 
 
 
@@ -576,7 +572,7 @@ $("#shanChu").click(function () {
             $("#tbStudent").html("");
             $("#tbStudent").html("<tr><td>"+studenttNo.studenttNo+"</td><td>"+studenttNo.studenttName+"</td><td>"+studenttNo.studentSex+"</td><td>"+studenttNo.studentAge+"</td>" +
                 "<td>"+studenttNo.studentClass+"</td><td>"+studenttNo.birthday+"</td><td>"+studenttNo.parentsName+"</td><td>"+studenttNo.parentsPhone+"</td><td>"+studenttNo.address+"</td>" +
-                "<td>"+studenttNo.enrolledDate+"</td><td>"+studenttNo.grade+"</td><td>"+studenttNo.headeTeacher+"</td><td>"+studenttNo.notes+"</td><td><button class='layui-btn layui-btn-danger shanChu' onclick='del(\""+studenttNo.studenttNo+"\")'>删除</button><button class='layui-btn layui-btn-warm xiugai' onclick='xiugai(\""+studenttNo.studenttNo+"\")'>修改</button></td></tr>")
+                "<td>"+studenttNo.enrolledDate+"</td><td>"+studenttNo.grade+"</td><td>"+studenttNo.headeTeacher+"</td><td>"+studenttNo.notes+"</td><td><button  onclick='del(\""+studenttNo.studenttNo+"\")'>删除</button><button  onclick='xiugai(\""+studenttNo.studenttNo+"\")'>修改</button></td></tr>")
         }else {
             $("#tiShikuang").show();
             $("#zhezhao").show();
@@ -601,7 +597,7 @@ $("#shanChu").click(function () {
                     $("#tbStudent").html("");
                     $("#tbStudent").html("<tr><td>" + studenttName.studenttNo + "</td><td>" + studenttName.studenttName + "</td><td>" + studenttName.studentSex + "</td><td>" + studenttName.studentAge + "</td>" +
                         "<td>" + studenttName.studentClass + "</td><td>" + studenttName.birthday + "</td><td>" + studenttName.parentsName + "</td><td>" + studenttName.parentsPhone + "</td><td>" + studenttName.address + "</td>" +
-                        "<td>" + studenttName.enrolledDate + "</td><td>" + studenttName.grade + "</td><td>" + studenttName.headeTeacher + "</td><td>" + studenttName.notes + "</td><td><button class='layui-btn layui-btn-danger shanChu' onclick='del(\"" + studenttName.studenttNo + "\")'>删除</button><button class='layui-btn layui-btn-warm xiugai' onclick='xiugai(\"" + studenttName.studenttNo + "\")'>修改</button></td></tr>")
+                        "<td>" + studenttName.enrolledDate + "</td><td>" + studenttName.grade + "</td><td>" + studenttName.headeTeacher + "</td><td>" + studenttName.notes + "</td><td><button class='shanchu' onclick='del(\"" + studenttName.studenttNo + "\")'>删除</button><button class='xiugai' onclick='xiugai(\"" + studenttName.studenttNo + "\")'>修改</button></td></tr>")
                         return
                 }else{
                     $("#tiShikuang").show();
@@ -639,7 +635,7 @@ $("#shanChu").click(function () {
         for(var j=0;j< arr.length;j++){
             $("#tbStudent").append("<tr><td>"+arr[j].studenttNo+"</td><td>"+arr[j].studenttName+"</td><td>"+arr[j].studentSex+"</td><td>"+arr[j].studentAge+"</td>" +
                 "<td>"+arr[j].studentClass+"</td><td>"+arr[j].birthday+"</td><td>"+arr[j].parentsName+"</td><td>"+arr[j].parentsPhone+"</td><td>"+arr[j].address+"</td>" +
-                "<td>"+arr[j].enrolledDate+"</td><td>"+arr[j].grade+"</td><td>"+arr[j].headeTeacher+"</td><td>"+arr[j].notes+"</td><td><button class='layui-btn layui-btn-danger shanChu' onclick='del(\""+arr[j].studenttNo+"\")'>删除</button><button class='layui-btn layui-btn-warm xiugai' onclick='xiugai(\""+arr[j].studenttNo+"\")'>修改</button></td></tr>"
+                "<td>"+arr[j].enrolledDate+"</td><td>"+arr[j].grade+"</td><td>"+arr[j].headeTeacher+"</td><td>"+arr[j].notes+"</td><td><button class='shanchu' onclick='del(\""+arr[j].studenttNo+"\")'>删除</button><button class='xiugai' onclick='xiugai(\""+arr[j].studenttNo+"\")'>修改</button></td></tr>"
             );
             $table.trigger("paging");
         }
@@ -667,7 +663,7 @@ $("#shanChu").click(function () {
         for(var j=0;j< xingBieArr.length;j++){
             $("#tbStudent").append("<tr><td>"+xingBieArr[j].studenttNo+"</td><td>"+xingBieArr[j].studenttName+"</td><td>"+xingBieArr[j].studentSex+"</td><td>"+xingBieArr[j].studentAge+"</td>" +
                 "<td>"+xingBieArr[j].studentClass+"</td><td>"+xingBieArr[j].birthday+"</td><td>"+xingBieArr[j].parentsName+"</td><td>"+xingBieArr[j].parentsPhone+"</td><td>"+xingBieArr[j].address+"</td>" +
-                "<td>"+xingBieArr[j].enrolledDate+"</td><td>"+xingBieArr[j].grade+"</td><td>"+xingBieArr[j].headeTeacher+"</td><td>"+xingBieArr[j].notes+"</td><td><button class='layui-btn layui-btn-danger shanChu'' onclick='del(\""+xingBieArr[j].studenttNo+"\")'>删除</button><button class='layui-btn layui-btn-warm xiugai' onclick='xiugai(\""+xingBieArr[j].studenttNo+"\")'>修改</button></td></tr>")
+                "<td>"+xingBieArr[j].enrolledDate+"</td><td>"+xingBieArr[j].grade+"</td><td>"+xingBieArr[j].headeTeacher+"</td><td>"+xingBieArr[j].notes+"</td><td><button class='shanchu' onclick='del(\""+xingBieArr[j].studenttNo+"\")'>删除</button><button class='xiugai' onclick='xiugai(\""+xingBieArr[j].studenttNo+"\")'>修改</button></td></tr>")
             $table.trigger("paging");
         }
     }
