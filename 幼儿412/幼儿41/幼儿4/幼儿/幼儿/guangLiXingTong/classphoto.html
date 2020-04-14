@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班级相册</title>
+    <link rel="stylesheet" href="layui-v2.5.6/layui/css/layui.css" media="all">
+    <style>
+        .Gn{
+            margin-top: 100px;
+            margin-left: 50px;
+        }
+        .Gn>div{
+            float: right;
+            margin-right: 200px;
+        }
+        .Frame{
+            width: 1000px;
+            height: 800px;
+            position: absolute;
+            top: 20px;
+            left: 150px;
+            display: none;
+        }
+        .Frame iframe{
+            width: 100%;
+            height: 100%;
+        }
+        .close{
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 20px;
+            position: fixed;
+            left: 134px;
+            top: 23px;
+            display: none;
+        }
+        .addAlbum{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 25px;
+            left: 300px;
+            display: none;
+        }
+        .addmodi{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 25px;
+            left: 300px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<blockquote class="layui-elem-quote">
+    <h1>班级相册</h1>
+       <span class="close">X</span>
+</blockquote>
+<table class="layui-table main">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>年级</th>
+        <th>班级</th>
+        <th>老师</th>
+        <th>查看</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    <tr>
+        <td id="daBan">大班</td>
+        <td>我们这一班</td>
+        <td>张三</td>
+        <td><a href="" class="lookphoto"><i class="layui-icon" >&#xe64a;&nbsp;&nbsp;&nbsp;查看班级相册</i></a></td>
+        <td>
+            <a class="layui-btn layui-btn-normal layui-btn-xs del">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs xg">修改</a>
+        </td>
+    </tr>
+    <tr>
+        <td id="zhongBan">中班</td>
+        <td>蔷薇班</td>
+        <td>李四</td>
+        <td><a href="" class="lookphoto"><i class="layui-icon" >&#xe64a;&nbsp;&nbsp;&nbsp;查看班级相册</i></a></td>
+        <td>
+            <a class="layui-btn layui-btn-normal layui-btn-xs del">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs xg">修改</a>
+        </td>
+    </tr>
+    <tr>
+        <td id="xiaoBan">小班</td>
+        <td>启航班</td>
+        <td>许子谆</td>
+        <td><a href="" class="lookphoto"><i class="layui-icon" >&#xe64a;&nbsp;&nbsp;&nbsp;查看班级相册</i></a></td>
+        <td>
+            <a class="layui-btn layui-btn-normal layui-btn-xs del">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs xg">修改</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+<div class="layui-container Gn">
+        <button type="button" class="layui-btn layui-btn-sm">
+            <i class="layui-icon">&#xe603;</i>
+        </button>
+        <button type="button" class="layui-btn layui-btn-sm">
+            <i class="layui-icon">&#xe602;</i>
+        </button>
+        <button type="button" class="layui-btn add">添加</button>
+        <button type="button" class="layui-btn layui-btn-danger dels" >全部删除</button>
+    </div>
+</div>
+<div class="Frame">
+<iframe src="clasphoto_2.html" class="aa" scrolling="yes"></iframe>
+</div>
+
+<div class="addAlbum layui-card">
+    <h1>创建相册</h1>
+    <hr class="layui-bg-green">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <span class="layui-form-label ">年级</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入相册名称" autocomplete="off" class="layui-input Aname" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label ">班级</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入创建时间" autocomplete="off" class="layui-input Atime" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label ">老师</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入相册描述" autocomplete="off" class="layui-input Atext" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button  type="button" class="layui-btn tj">立即提交</button>
+            <button type="button" class="layui-btn layui-btn-primary cl">关闭</button>
+        </div>
+    </form>
+</div>
+
+<div class="addmodi layui-card">
+    <h1>修改相册</h1>
+    <hr class="layui-bg-green">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <span class="layui-form-label ">年级</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入修改年级" autocomplete="off" class="layui-input grade" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label Mclass">班级</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入修改班级" autocomplete="off" class="layui-input Mclass" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label Mname">修改人</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入姓名" autocomplete="off" class="layui-input Mname" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button  type="button" class="layui-btn Mtj">立即提交</button>
+            <button type="button" class="layui-btn layui-btn-primary Mcl">关闭</button>
+        </div>
+    </form>
+</div>
+<script src="layui-v2.5.6/layui/layui.js"></script>
+<script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
+<script>
+    $(".lookphoto").click(function (e) {
+        e.preventDefault();
+        $(".Frame").show();
+        $(".close").show()
+    });
+    $(".close").click(function (e) {
+        e.preventDefault();
+        $(".Frame").hide();
+        $(".close").hide()
+    });
+    //添加
+    $(".add").click(function () {
+        $(".addAlbum").show();
+    });
+    $(".tj").click(function () {
+        var Aname=$(".Aname").val();
+        var Atime=$(".Atime").val();
+        var Atext=$(".Atext").val();
+        $(".main").append(` <tr>
+        <td>${Aname}</td>
+        <td>${Atime}</td>
+        <td>${Atext}</td>
+        <td><a href="#" class="lookphoto"><i class="layui-icon" >&#xe64a;&nbsp;&nbsp;&nbsp;查看${Aname}</i></a></td>
+        <td>
+            <a class="layui-btn layui-btn-normal layui-btn-xs del">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs xg">修改</a>
+        </td>
+        </tr> `);
+        $(".addAlbum").hide()
+    });
+    $(".cl").click(function () {
+        $(".addAlbum").hide()
+    });
+    //删除
+    $(".main").on("click",".del",function () {
+        $(this.parentNode.parentNode).remove()
+    });
+    //全删
+    $(".dels").click(function () {
+        $(".main tbody tr").remove()
+    });
+    //修改
+    var indexS;
+    $("#tbody").on("click",".xg",function () {
+        $(".addmodi").show();
+        $(".grade").val($(this.parentNode.parentNode).children().eq(0).text());
+        $(".Mclass").val($(this.parentNode.parentNode).children().eq(1).text());
+        $(".Mname").val($(this.parentNode.parentNode).children().eq(2).text());
+        indexS = $(this.parentNode.parentNode).get(0).rowIndex
+
+    })
+    $(".Mtj").click(function () {
+        $("#tbody tr").eq(indexS-1).children().eq(0).text( $(".grade").val())
+        $("#tbody tr").eq(indexS-1).children().eq(1).text( $(".Mclass").val())
+        $("#tbody tr").eq(indexS-1).children().eq(2).text($(".Mname").val())
+
+        $(".addmodi").hide();
+    });
+    // $(".main").on("click",".xg",function () {
+    //     $(".addmodi").show()
+    // });
+    // $(".Mtj").click(function() {
+    //     var grade=$(".grade").val();
+    //     var Mclass=$(".Mclass").val();
+    //     var Mname=$(".Mname").val();
+    //     $("#tboby tr")[0].html(`
+    //     <td>${grade}</td>
+    //     <td>${grade}</td>
+    //     <td>${grade}</td>
+    //     <td><a href="" class="lookphoto"><i class="layui-icon" >&#xe64a;&nbsp;&nbsp;&nbsp;查看班级相册</i></a></td>
+    //     <td>
+    //         <a class="layui-btn layui-btn-normal layui-btn-xs del">删除</a>
+    //         <a class="layui-btn layui-btn-warm layui-btn-xs xg">修改</a>
+    //     </td>`)
+    //
+    // });
+    $(".Mcl").click(function () {
+        $(".addmodi").hide()
+    })
+//    $(document).ready(function(){
+//        var username=$("#loginUser").text();
+//        var jiaose;
+//        var nianJi;
+//var danban=$("#daBan").val()
+//var xiaoBan=$("#xiaoBan").val()
+//var zhongBan=$("#zhongBan").val()
+//
+//        for(var i=0;i<userArr.length;i++){
+//            if(username==userArr[i].userName){
+//                jiaose=userArr[i].juese;
+//
+//            }
+//        }for(var j=0;j<StudentsFileArr.length;j++){
+//            nianJi=StudentsFileArr[j].grade
+//
+//        } if(jiaose=="学生"&&nianJi==zhongBan){
+//            $("#daBan").hide();
+//            $("#xiaoBan").hide();
+//            $("#zhongBan").show();
+//        }
+//
+//
+//    })
+</script>
+</body>
+</html>

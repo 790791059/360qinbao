@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="layui-v2.5.6/layui/css/layui.css" >
+    <title>班级管理</title>
+    <link rel="stylesheet" href="css/classS.css">
+    <script src="js/data.js"></script>
+</head>
+<body>
+<div class="classContanier">
+    <div id="topBar">
+        <div class="top_btn">
+            <button class="btn " id="add_btn_choose" > <i class="layui-icon">&#xe654;</i>添加</button>
+            <button class="btn layui-btn-danger" id="btnDelAll"> <i class="layui-icon">&#xe640;</i>全部删除</button>
+        </div>
+        <!--搜索-->
+        <div>
+
+            <!--二级搜索-->
+            <form action="" class="form-inline">
+                <select name="" id="searchSub1" class="form-control">
+                    <option value="5">选择班级类型</option>
+                    <option value="1">小班</option>
+                    <option value="2">中班</option>
+                    <option value="3">大班</option>
+                    <option value="4">学前班</option>
+                </select>
+                <select name="" id="searchSub2" class="form-control" >
+                    <option value="5">选择班级编号</option>
+                    <option value="1">1班</option>
+                    <option value="2">2班</option>
+                </select>
+                <button class=" form-control layui-btn" id="searchGo"> <i class="layui-icon">&#xe615;</i>查询</button>
+            </form>
+
+
+        </div>
+    </div>
+    <table class="table table-responsive table-bordered text-center layui-table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>班级编号</th>
+            <th>班级类型</th>
+            <th>班级名称</th>
+            <th>班主任</th>
+            <th>副班主任</th>
+            <th>创班时间</th>
+            <th>
+                操作
+            </th>
+        </tr>
+        </thead>
+        <tbody class="teaList">
+        </tbody>
+    </table>
+    <div id="addForm" class="hide">
+        <form action="#" class="form-inline">
+            <h2 class="text-center">学生信息</h2>
+            <p class="form-group"><span class="formWord">id</span><input type="text" id="addId" class="form-control"></p>
+            <p class="form-group"><span class="formWord">编号</span><input type="text" id="addNum" class="form-control"></p>
+            <p class="form-group"><span class="formWord">班级类型</span>
+                <select name=""  id="addClassType"   class="form-control">
+                    <option value="1">小班</option>
+                    <option value="2">大班</option>
+                    <option value="3">中班</option>
+                    <option value="4">学前班</option>
+                </select>
+            </p>
+            <p class="form-group"><span class="formWord" >班级名称</span><input type="text" id="addClassName" class="form-control"></p>
+            <p class="form-group"><span class="formWord" >班主任</span><input type="text" id="addHeadTea" class="form-control"></p>
+            <p class="form-group"><span class="formWord" > 副班主任</span><input type="text" id="addViceTea" class="form-control"></p>
+            <p class="form-group"><span class="formWord" > 创班时间</span><input type="date" id="addclassTime" class="form-control"> </p>
+            <p class="form-group">
+                <button  id="btnAddSubmit" class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+                <button class="layui-btn"  id="btn_cancel">取消</button>
+            </p>
+        </form>
+    </div>
+    <div class="fanYe">
+        <a class="glyphicon glyphicon-chevron-left" id="prePage" onclick="ChangeCss(this)"></a>
+        <a id="page1" onclick="ChangeCss(this)">1</a>
+        <a id="page2" onclick="ChangeCss(this)">2</a>
+        <a id="page3" onclick="ChangeCss(this)">3</a>
+        <a id="page4" onclick="ChangeCss(this)">4</a>
+        <a class="glyphicon glyphicon-chevron-right" id="nextPage" onclick="ChangeCss(this)"></a>
+    </div>
+</div>
+<!--模态框-->
+<div class="zheZhao hide" id="zheZhao"></div>
+<script src="layer-v3.1.1/layer/layer.js"></script>
+<script src="layui-v2.5.6/layui/layui.js"></script>
+<script src="layui-v2.5.6/layui/layui.all.js"></script>
+<script src="layer-v3.1.1/layer-v3.1.1/layer/layer.js"></script>
+<script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<!--<script src="layui/layui.js"></script>-->
+<!--<script src="layer-v3.1.1/layer/layer.js"></script>-->
+<!--<script src="layui/layui.all.js"></script>-->
+<script src="js/database.js"></script>
+<script src="js/classS.js"></script>
+<script>
+
+</script>
+</body>
+</html>

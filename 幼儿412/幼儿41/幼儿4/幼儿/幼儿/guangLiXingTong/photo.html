@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>carousel模块快速使用</title>
+    <link rel="stylesheet" href="layui-v2.5.6/layui/css/layui.css" media="all">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        blockquote{
+            height: 65px;
+        }
+        #Pagechange{
+            margin-left: calc(50% - 40px);
+        }
+        .addAlbum{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 25px;
+            left: 300px;
+            display: none;
+        }
+        .addmodi{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 25px;
+            left: 300px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<blockquote class="layui-elem-quote" style="font-size: 14px;">
+<form class="layui-form">
+    <div class="layui-form-item">
+        <input type="text"  placeholder="请输入活动" class="layui-input layui-input-inline">
+        <input type="text"  placeholder="请输入相册名称" class="layui-input layui-input-inline">
+        <div class="form-group">
+            <button type="button" class="layui-btn layui-btn-normal">查找</button>
+            <button type="button" class="layui-btn layui-btn-danger add">添加</button>
+            <button type="button" class="layui-btn layui-btn-danger dels">批量删除</button>
+        </div>
+    </div>
+</form>
+
+</blockquote>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>相册名称</th>
+        <th>创建时间</th>
+        <th>相册描述</th>
+        <th>创建人</th>
+        <th>管理操作</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    <tr>
+        <td>活动相册</td>
+        <td>2016-11-29</td>
+        <td>活动相册</td>
+        <td>张三</td>
+        <td><a href="activityphoto.html" class="lookphoto"><i class="layui-icon" >&#xe64a;&nbsp;&nbsp;&nbsp;查看活动相册</i></a></td>
+        <td>
+            <a class="layui-btn layui-btn-normal layui-btn-xs del">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs modi">修改</a>
+        </td>
+    </tr>
+    <tr>
+        <td>班级相册</td>
+        <td>2016-11-29</td>
+        <td>班级</td>
+        <td>李四</td>
+        <td><a href="classphoto.html" class="lookphoto"><i class="layui-icon">&#xe64a;&nbsp;&nbsp;&nbsp;查看班级相册</i></a></td>
+        <td>
+            <a class="layui-btn layui-btn-normal layui-btn-xs del">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs modi">修改</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="layui-btn-group" id="Pagechange">
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe603;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe602;</i>
+    </button>
+</div>
+
+<div class="addAlbum layui-card">
+    <h1>创建相册</h1>
+    <hr class="layui-bg-green">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <span class="layui-form-label ">相册名</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入相册名称" autocomplete="off" class="layui-input Aname" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label ">创建时间</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入创建时间" autocomplete="off" class="layui-input Atime" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label ">相册描述</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入相册描述" autocomplete="off" class="layui-input Atext" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label ">创建人</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入创建人" autocomplete="off" class="layui-input Founder" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+                <button  type="button" class="layui-btn tj">立即提交</button>
+                <button type="button" class="layui-btn layui-btn-primary cl">关闭</button>
+            </div>
+    </form>
+</div>
+
+
+<div class="addmodi layui-card">
+    <h1>修改相册</h1>
+    <hr class="layui-bg-green">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <span class="layui-form-label ">相册名</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入相册名称" autocomplete="off" class="layui-input Mname" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label ">创建时间</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入创建时间" autocomplete="off" class="layui-input Mtime" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label ">相册描述</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入相册描述" autocomplete="off" class="layui-input Mtext" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="layui-form-label ">创建人</span>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请输入创建人" autocomplete="off" class="layui-input MFounder" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button  type="button" class="layui-btn Mtj">立即提交</button>
+            <button type="button" class="layui-btn layui-btn-primary Mcl">关闭</button>
+        </div>
+    </form>
+</div>
+
+<!-- 条目中可以是任意内容，如：<img src=""> -->
+<script src="layui-v2.5.6/layui/layui.js"></script>
+<script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
+<script>
+
+    //删除
+    $("#tbody").on("click",".del",function () {
+        $(this.parentNode.parentNode).remove()
+    });
+    //批量删除
+    $(".dels").click(function () {
+        $("#tbody tr").remove()
+    });
+    //添加
+
+    $(".add").click(function () {
+        $(".addAlbum").show();
+    });
+    $(".tj").click(function () {
+        var Aname=$(".Aname").val();
+        var Atime=$(".Atime").val();
+        var Atext=$(".Atext").val();
+        var Founder=$(".Founder").val();
+        $("#tbody").append(` <tr>
+        <td>${Aname}</td>
+        <td>${Atime}</td>
+        <td>${Atext}</td>
+        <td>${Founder}</td>
+        <td><a href="#" class="lookphoto"><i class="layui-icon" >&#xe64a;&nbsp;&nbsp;&nbsp;查看${Aname}</i></a></td>
+        <td>
+            <a class="layui-btn layui-btn-normal layui-btn-xs del">删除</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs modify">修改</a>
+        </td>
+        </tr> `);
+        $(".addAlbum").hide()
+    });
+    $(".cl").click(function () {
+        $(".addAlbum").hide()
+    });
+
+    //修改
+
+var indexS;
+    $("#tbody").on("click","a.modi",function () {
+        $(".addmodi").show();
+        $(".Mname").val($(this.parentNode.parentNode).children().eq(1).text());
+        $(".Mtime").val($(this.parentNode.parentNode).children().eq(2).text());
+        $(".Mtext").val($(this.parentNode.parentNode).children().eq(3).text());
+        $(".MFounder").val($(this.parentNode.parentNode).children().eq(4).text())
+        indexS = $(this.parentNode.parentNode).get(0).rowIndex
+
+    })
+    $(".Mtj").click(function () {
+        console.log(   $("#tbody tr").eq(indexS-1).children().eq(1).text())
+        $("#tbody tr").eq(indexS-1).children().eq(1).text( $(".Mname").val())
+        $("#tbody tr").eq(indexS-1).children().eq(2).text( $(".Mtime").val())
+        $("#tbody tr").eq(indexS-1).children().eq(3).text($(".Mtext").val())
+        $("#tbody tr").eq(indexS-1).children().eq(4).text($(".MFounder").val())
+        $(".addmodi").hide();
+    });
+    // $(".modi").click(function () {
+    // $(".addmodi").show();
+    //     $(".Aname").val($(this.parentNode.parentNode).children().eq(1).text());
+    //     $(".Atime").val($(this.parentNode.parentNode).children().eq(2).text());
+    //     $(".Atext").val($(this.parentNode.parentNode).children().eq(3).text());
+    //     $(".Founder").val($(this.parentNode.parentNode).children().eq(4).text())
+    // });
+
+    // $(".Mtj").click(function () {
+    //     var Mname = $(".Mname").val();
+    //     var Mtime = $(".Mtime").val();
+    //     var Mtext = $(".Mtext").val();
+    //     var Mounder = $(".Mounder").val();
+    // });
+    $(".Mcl").click(function () {
+        $(".addmodi").hide()
+    })
+</script>
+</body>
+</html>

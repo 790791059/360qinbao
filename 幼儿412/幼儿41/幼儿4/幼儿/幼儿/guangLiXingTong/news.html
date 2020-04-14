@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui-v2.5.6/layui/css/layui.css" media="all">
+    <style type="text/css">
+        #divAddNews{
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: 650px;
+            height: 600px;
+            margin: auto;
+            background-color: white;
+            box-sizing: border-box;
+
+        }
+        #divAddNews>h2{
+            margin-bottom: 20px;
+            margin-left: 20px;
+            text-align: center;
+        }
+
+        #zhezhao{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+
+        }
+        .hidden{
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+        form table{
+            align-content: center;
+            padding-left: 30px;
+            width: 600px;
+            height: 300px;
+            margin-left: 30px;
+        }
+        #chaXunDiv{
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            background-color: gray;
+            box-sizing: border-box;
+            color: white;
+        }
+        #chaXunDiv>h2{
+            text-align: center;
+        }
+        #chaXunDiv>p>button{
+            margin-left:48%;
+            margin-top: 10px;
+
+        }
+        #chaXunDiv>table{
+            position: absolute;
+            z-index: 2;
+            top: 50px;
+            right:calc(50% - 240px);
+            margin: auto;
+        }
+        #chaXunDiv>table>tfoot{
+            position: absolute;
+            z-index: 2;
+            bottom: -50px;
+            right:calc(50% - 50px);
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-body">
+    <div class="addBtn">
+        <button id="btnAdd" class="layui-btn layui-btn-sm">发布公告</button>
+        <input type="text" placeholder="请输入查询内容" id="chaxun">
+        <button  id="chaxunbtn" class="layui-btn layui-btn-sm"> 查询</button>
+    </div>
+<table class="layui-table">
+    <colgroup>
+        <col width="100">
+        <col width="300">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>公告主题</th>
+        <th>公告内容</th>
+        <th width="50">发布人</th>
+        <th width="50">发布时间</th>
+        <th width="50">操作</th>
+    </tr>
+    </thead>
+    <tbody id="addNews" class="layui-table">
+
+    </tbody>
+</table>
+    <div id="divAddNews" class="hidden" >
+        <h2>发布公告</h2>
+        <form action="#">
+            <table cellpadding="6" cellspacing="5" >
+
+                <tr>
+                    <td>公告主题：</td>
+                    <td><input type="text" name="newsName" id="newsName"> </td>
+
+                </tr>
+                <tr>
+                    <td>公告内容：</td>
+                    <td><textarea rows="5" cols="50" name="newsContent" id="newsContent"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                        发布人
+                    </td>
+                    <td>
+                        <input type="text" name="newsPeople" id="newsPeople">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        发布时间
+                    </td>
+                    <td>
+                        <input type="text" class="layui-input" id="test1">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button id="btnAddData" type="button" class="layui-btn"  >添加</button>
+                    </td>
+                    <td colspan="2">
+                        <button  id="btnCancel" class="layui-btn" type="button">返回</button>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+    <div id="chaXunDiv" class="hidden">
+        <h2>
+            公告详情
+        </h2>
+        <table >
+            <colgroup>
+                <col width="100">
+                <col width="300">
+                <col>
+            </colgroup>
+
+            <tbody id="chaXunText" class="layui-table">
+
+            </tbody>
+            <tfoot>
+            <tr >
+                <td> <button id="btnBack" class="layui-btn layui-btn-normal" type="button">返回</button></td>
+            </tr>
+
+            </tfoot>
+        </table>
+
+    </div>
+</div>
+<div id="zhezhao"  class="hidden"></div>
+<script src="layer-v3.1.1/layer/layer.js"></script>
+<script src="layui-v2.5.6/layui/layui.js"></script>
+<script src="layui-v2.5.6/layui/layui.all.js"></script>
+<script src="layer-v3.1.1/layer-v3.1.1/layer/layer.js"></script>
+<script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
+<script src="js/data.js"></script>
+<script type="text/javascript">
+
+    var newsOper="";
+    $("#btnAdd").click(   function addnews(){
+        newsOper="";
+        model("divAddNews");
+    });
+    document.getElementById("btnAddData").onclick=addNewsData;
+    $("#zhezhao").click(function () {
+        model("divAddNews","hidden");
+    });
+    //取消
+    $("#btnCancel").click(function () {
+        model("divAddNews","hidden");
+        blankSpace();
+    });
+
+    function dataNews() {
+        var addNews=document.getElementById("addNews");
+        addNews.innerHTML="";
+        for(var i=0; i<newsArr.length;i++){
+            addNews.innerHTML+="<tr><td>"+newsArr[i].newsName+"</td><td>"+newsArr[i].newsContent+"</td><td>"
+                +newsArr[i].newsPeople+"</td><td>"+newsArr[i].newsTime+"</td>"+
+                "<td><button class=\"\layui-btn layui-btn-danger layui-btn-sm\"\ onclick='del(\""+newsArr[i].newsName+"\")'>删除</button><button class=\"\layui-btn-sm layui-btn layui-btn-warm\"\onclick='update(\""+newsArr[i].newsName+"\")'>修改</button></td></tr>"
+        }
+    }
+
+    dataNews();
+
+    //模态框
+    function model(id,type) {
+        type=type || "show";
+        document.getElementById("zhezhao").className=type;
+        document.getElementById(id).className=type;
+    }
+    function addNewsData() {
+        var newsName = $("#newsName").val();
+        var newsContent =$("#newsContent").val();
+        var newsPeople = $("#newsPeople").val();
+        var newsTime = $("#test1").val();
+
+        if (newsOper==""){
+            var obj = {"newsName":newsName,"newsContent":newsContent,"newsPeople":newsPeople,"newsTime":newsTime
+            };
+            newsArr.push(obj);
+            model("divAddNews","hidden");
+            dataNews();
+            $("#newsName").val("");
+            $("#newsContent").val("");
+            $("#newsPeople").val("");
+            $("#test1").val("");
+
+        }else {
+            for(var i=0;i<newsArr.length;i++) {
+                if (newsArr[i].newsName==newsOper){
+                   newsArr[i].newsName=newsName;
+                    newsArr[i].newsContent=newsContent;
+                    newsArr[i].newsPeople=newsPeople;
+                    newsArr[i].newsTime=newsTime;
+                    layer.confirm("修改成功");
+                    layer.close(index);
+                    model("divAddNews","hidden");
+                    dataNews();
+                    blankSpace();
+                    break;
+                }
+            }
+        }
+
+    }
+    function  update(newsName) {
+        var newsObj=getNewsByNo(newsName);
+        if(newsObj){
+           newsOper=newsName;
+            model("divAddNews");
+            $("#newsName").val(newsObj.newsName);
+            $("#newsContent").val(newsObj.newsContent);
+            $("#newsPeople").val(newsObj.newsPeople);
+            $("#test1").val(newsObj.newsTime);
+
+        }else {
+            layer.confirm("输入有误");
+            layer.close(index);
+        }
+    }
+    function checkNewsArr(newsName) {
+        for( var i=0;i<newsArr.length;i++){
+            if(newsArr[i].newsName==newsName){
+                return true;
+            }
+        }
+        return false;
+    }
+    function checkNewsArrindex(newsName) {
+        for (var i=0;i<newsArr.length;i++){
+            if(newsName==newsArr[i].newsName){
+                return i;  //等于i返回i的值
+            }
+        }
+        return -1; //不等于i 返回-1
+    }
+    function getNewsByNo(newsName) {
+        for(var i=0;i<newsArr.length;i++){
+            if(newsArr[i].newsName==newsName){
+                return newsArr[i];
+            }
+        }
+        return null;
+    }
+    function del(newsName) {
+        layer.confirm('是否删除?', function(index){
+            for (var i=0;i<newsArr.length;i++){
+                if(newsArr[i].newsName==newsName){
+                   newsArr.splice(i,1);
+                    dataNews();
+                    break;
+                }
+            }
+        })
+    }
+    function chaxun() {  //查询函数
+        var newsName=$("#chaxun").val();//提醒用户输入
+        var index=checkNewsArrindex(newsName); //存储值
+        if (index!=-1){
+            $("#chaXunDiv").show();
+            news(index);
+        }else {
+            layer.confirm("输入有误");
+            layer.close(index);
+        }
+
+    }
+    $("#chaxunbtn").click(chaxun);
+    function news(index) {
+        var chaXunText=document.getElementById("chaXunText");
+        chaXunText.innerHTML="";
+        chaXunText.innerHTML+="<tr><td>公告管理:</td><td>"+newsArr[index].newsName+"</td><tr>"
+            +"<tr><td>公告内容：</td><td>"+newsArr[index].newsContent+"</td><tr>" +
+            "<tr><td>发布人：</td><td>"+newsArr[index].newsPeople+"</td><tr>" +
+            "<tr><td>发布时间:</td><td>"+newsArr[index].newsTime+"</td><tr>"
+    }
+    function blankSpace() {
+        $("#newsName").val("");
+        $("#newsContent").val("");
+        $("#newsPeople").val("");
+        $("#test1").val("");
+    }
+    $("#btnBack").click(function () {
+        $("#chaXunDiv").hide();
+    })
+</script>
+</body>
+</html>

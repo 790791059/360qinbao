@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="da614a3b-f53d-480c-98ac-6c558ae19e1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/js/motaikuan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/looknews.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/classS.html" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/classS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/classphoto.html" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/classphoto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/css/juese.css" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/css/juese.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/css/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/css/user.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/js/juese.js" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/js/juese.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/js/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/js/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/lookNews.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/photo.html" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/photo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/teacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/teacher.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/幼儿/幼儿/guangLiXingTong/user.html" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/幼儿/幼儿" />
+  </component>
+  <component name="ProjectId" id="1aWVDP4UfIwlzinGWPsKruEI9wA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="da614a3b-f53d-480c-98ac-6c558ae19e1a" name="Default Changelist" comment="" />
+      <created>1586851217133</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586851217133</updated>
+      <workItem from="1586851221638" duration="106000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

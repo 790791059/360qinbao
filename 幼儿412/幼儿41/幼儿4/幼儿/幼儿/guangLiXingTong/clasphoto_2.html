@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="boots/css/bootstrap.css" media="all">
+    <link rel="stylesheet" href="layui-v2.5.6/layui/css/layui.css"  media="all">
+    <style>
+    ul{
+            overflow: hidden;
+       }
+    ul li{
+        list-style-type: none;
+        float: left;
+          }
+        .add{
+            margin-top: 50px;
+            margin-left: 250px;
+        }
+        .addclassphoto{
+            width: 400px;
+            height: 400px;
+            margin-left: 230px;
+            margin-top: 100px;
+            border: 1px solid gainsboro;
+            background-color: white;
+            display: none;
+        }
+        .txt{
+            margin-left: 110px;
+            margin-top: 50px;
+        }
+        .addphoto{
+            margin-left: 110px;
+        }
+        .newphoto{
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .close{
+            margin-top: 230px;
+        }
+    </style>
+</head>
+<body>
+<blockquote class="layui-elem-quote">
+    <h1>相册</h1>
+</blockquote>
+<div>
+    <ul class="result"></ul>
+</div>
+<div class="addclassphoto">
+                <div class="addphoto"><h1>添加图片</h1></div>
+
+                <div>
+                    <div class="select">
+                        <div class="txt">
+                            <label >输入图片地址：</label>
+                            <div >
+                                <input type="text" name="url" >
+                            </div>
+                        </div>
+                    </div>
+
+                        <div>
+                                <button class="add btn btn-primary size-L">添加</button>
+                                <button class="btn btn-primary close">关闭</button>
+                        </div>
+</div>
+</div>
+<button class="newphoto btn btn-primary">添加</button>
+<script src="boots/js/bootstrap.js"></script>
+<script src="js/jQuery%20JavaScript%20Library%20v3.4.1.js"></script>
+    <script type="text/javascript">
+        $('.add').on('click', function () {
+            //获取图片地址
+            var imgUrl = $('.select input[name= "url"]').val();
+            var img = $('<img>').attr('src', imgUrl).width(300);
+
+            //创建一个容器,用来放图片
+            var imgBox = $('<li style="margin-left: 10px; "></li>');
+
+            //创建删除按钮
+            var remove = $('<div><button class="btn btn btn-danger">删除</button></div>');
+
+            //移除事件
+            remove.on('click', function () {
+                //删除整个节点
+                imgBox.remove();
+            });
+
+            //将各元素放入容器
+            imgBox.append(img,remove);
+
+            //将容器放到页面上
+            $('.result').append(imgBox);
+
+        });
+        $(".newphoto").click(function () {
+            $(".addclassphoto").show();
+        });
+        $(".close").click(function () {
+            $(".addclassphoto").hide();
+        })
+    </script>
+</body>
+</html>
